@@ -1,0 +1,197 @@
+---
+title: "[Operations Management](https://www.coursera.org/learn/operations-management/home/welcome) : Module 1 Assignment 2"
+subtitle: "[Improving Business Finances and Operations Specialization](https://www.coursera.org/specializations/business-operations) by University of Illinois at Urbana-Champaign"
+author: "[®γσ, Eng Lian Hu](http://englianhu.wordpress.com) <img src='figure/ShirotoNorimichi.jpg' width='24'> 白戸則道®"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html:
+    toc: yes
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+# 1. Introduction
+
+**Instructions**
+
+  The purpose of this assignment is to give you the opportunity to apply the concepts you have learned in this module and to discuss some of the key ideas of the module in your own words. Follow the instructions provided and respond to each question. This a required activity for this module.
+
+  Submit your answers to each of the questions based on the information provided below. Enter your answers directly in the spaces provided in the My submission tab. You may save a draft of your work as you go, and you can come back later to continue working on your draft. When you are finished working, click the Preview button, verify your identity, and then click Submit for Review to submit your assignment. Please answer each question fully and concisely.
+
+  The discussion of the assignment solution is provided in the Module 1 Assignment 2 Solution video. Do the assignment on your own first, before viewing the assignment discussion video!
+
+**Module 1 Assignment 2**
+
+Following are the relevant figures extracted from the balance sheet and income statement of two companies, a consumer electronics manufacturer and a large retailer.
+
+```{r table-01, echo = FALSE}
+suppressMessages(library('dplyr'))
+#'@ suppressMessages(library('magrittr'))
+suppressMessages(library('knitr'))
+#'@ suppressMessages(library('formattable'))
+
+tbl1 <- data.frame(
+   Category = c('Sales', 'Earnings', 'Assets', 'Equity'), 
+   `Consumer Electronics` = c(108249, 25922, 116371, 76615), 
+   `Large Retailer` = c(446950, 15699, 193406, 75761)) %>% tbl_df
+
+tbl2 <- data.frame(
+  Category = c('Sales', 'Earnings', 'Assets', 'Equity'), 
+  `Consumer Electronics` = paste0('$', format(c(108249, 25922, 116371, 76615), big.mark = ',')), 
+  `Large Retailer` = paste0('$', format(c(446950, 15699, 193406, 75761), big.mark = ','))) %>% tbl_df
+
+#'@ tbl1 %<>% formattable(
+#'@     list(
+        #'@ Category = formatter('span', 
+        #'@     style = x ~ style(
+        #'@         color = if(x == 'Sales') {
+        #'@                     Sales = 'green'
+        #'@                 } else if(x == Earnings) {
+        #'@                     Earnings = 'orange' 
+        #'@                 } else if(x == Assets) {
+        #'@                     Assets = 'blue' 
+        #'@                 } else {
+        #'@                     Equity = 'red' }), 
+        #'@             x ~ icontext(
+        #'@                 if(x == 'Sales') {
+        #'@                     Sales = 'pie-chart' 
+        #'@                 } else if(x == 'Earnings') {
+        #'@                 Earnings = 'usd' 
+        #'@                 } else if(x == 'Assets') {
+        #'@                     Assets = 'home' 
+        #'@                 } else {
+        #'@                     Equity = 'stats' }), 
+        #'@             if(x == 'Sales') {
+        #'@                 Sales = 'Sales' 
+        #'@                 } else if(x == 'Earnings') {
+        #'@                     Earnings = 'Earnings' 
+        #'@                 } else if(x == 'Assets') {
+        #'@                     Assets = 'Assets' 
+        #'@                 } else {
+        #'@                     Equity = 'Equity' }), 
+#'@         `Consumer.Electronics` = color_tile('white', 'gold'), 
+#'@         `Large.Retailer` = color_tile('white', 'orange')))
+#'@ as.htmlwidget(tbl1)
+
+tbl2 %>% kable(Caption = 'Table 1.1 : Comparison of Financial statement from Two Companies')
+```
+
+*Table 1.1 : Comparison of relevant information of balance sheet and income statement from two companies.*
+
+# 2. Operational Concepts
+
+## 2.1 Compute the asset turnover for each company.
+
+
+```{r ROE, echo = TRUE}
+suppressMessages(library('dplyr'))
+
+roe <- suppressWarnings(as.list(paste0(round(tbl1[2, ]/tbl1[4, ] * 100, 2), '%')))
+roe %<>% data.frame %>% tbl_df
+names(roe) <- names(tbl2)
+roe %<>% mutate(Category = 'Return of Equity')
+roe <- rbind(tbl2[c(2, 4), ], roe)
+
+roe %>% kable(Caption = 'Table 2.3 : Comparison of Asset-Turnover of two companies')
+```
+
+*Table 2.1 : Comparison of Asset-Turnover of two companies.*
+
+**What is 'Asset Turnover Ratio'?**
+
+  Asset turnover ratio is the ratio of the value of a company’s sales or revenues generated relative to the value of its assets. The Asset Turnover ratio can often be used as an indicator of the efficiency with which a company is deploying its assets in generating revenue.
+
+  $Asset Turnover = Sales or Revenues / Total Assets$
+
+  Generally speaking, the higher the asset turnover ratio, the better the company is performing, since higher ratios imply that the company is generating more revenue per dollar of assets. Yet, this ratio can vary widely from one industry to the next. As such, considering the asset turnover ratios of an energy company and a telecommunications company will not make for an accurate comparison. Comparisons are only meaningful when they are made for different companies within the same sector.
+
+Read more: [Asset Turnover Definition | Investopedia](http://www.investopedia.com/terms/a/assetturnover.asp#ixzz4Aa2c4dPh)
+
+## 2.2 Compute the operating margin for each company.
+
+## 2.3 Compute the return on equity for each company.
+
+```{r ROE, echo = TRUE}
+suppressMessages(library('dplyr'))
+
+roe <- suppressWarnings(as.list(paste0(round(tbl1[2, ]/tbl1[4, ] * 100, 2), '%')))
+roe %<>% data.frame %>% tbl_df
+names(roe) <- names(tbl2)
+roe %<>% mutate(Category = 'Return of Equity')
+roe <- rbind(tbl2[c(2, 4), ], roe)
+
+roe %>% kable(Caption = 'Table 2.3 : Comparison of Return-On-Equity of two companies')
+```
+
+*Table 2.3 : Comparison of Return-On-Equity of two companies.*
+
+**What is 'Return On Equity - ROE'?**
+
+  Return on equity (ROE) is the amount of net income returned as a percentage of shareholders equity. Return on equity measures a corporation's profitability by revealing how much profit a company generates with the money shareholders have invested.
+
+  ROE is expressed as a percentage and calculated as:
+
+  $Return on Equity = Net Income/Shareholder's Equity$
+
+  Net income is for the full fiscal year (before dividends paid to common stock holders but after dividends to preferred stock.) Shareholder's equity does not include preferred shares.
+
+Also known as "return on net worth" (RONW).
+
+Read more: [Return On Equity (ROE) Definition | Investopedia](http://www.investopedia.com/terms/r/returnonequity.asp#ixzz4AZn3Wekf)
+
+## 2.4 What does your analysis suggest about the differences in operations performance of the two companies?
+
+
+
+# 3. Conclusion
+
+  Due to my am not a staff of **IKEA** and went there few years once. Here I only give some own opinion and recall the story of the **IKEA** about the business operatonal concept of **IKEA**. Kindly correct me if there has any wrong.
+
+# 4. Appendices
+
+  - Section [4.1 Documenting File Creation]
+  - Section [4.2 Versions' Log]
+  - Section [4.3 Speech and Blooper]
+  - Section [4.4 References]
+
+## 4.1 Documenting File Creation
+
+  It's useful to record some information about how your file was created.
+  
+  - File creation date: 2016-06-04
+  - File latest updated date: `r Sys.Date()`
+  - `r R.version.string`
+  - R version (short form): `r getRversion()`
+  - [**rmarkdown** package]() version: `r packageVersion('rmarkdown')`
+  - [**tufte** package](https://github.com/rstudio/tufte) version: `r packageVersion('tufte')`
+  - File version: 1.0.0
+  - Author Profile: [®γσ, Eng Lian Hu](https://beta.rstudioconnect.com/englianhu/ryo-eng/)
+  - GitHub: [Source Code](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/tree/master/5%20Operations%20Management)
+  - Additional session information:
+
+```{r info, echo = FALSE, results = 'asis'}
+lubridate::now()
+devtools::session_info()$platform
+Sys.info()
+```
+
+## 4.2 Versions' Log
+
+  - *May 28, 2016*: [version: 1.0.0](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/5%20Operations%20Management/Assignment-Module-1.Rmd)
+
+## 4.3 Speech and Blooper
+
+  Firstly, I do appreciate that [University of Illinois at Urbana–Champaign](http://illinois.edu/) provides the management course via [Coursera](http://www.coursera.org). I like reading the legend of business tycoons (for example: Konosuke Matsushita, Peter Drucker, Bill Gates, Warrent Buffet, George Soros, Jim Rogers, Lee Kah Sheng, Henry Fok Ying Tung, Peter Lynch, Lim Goh Tong etc) to know how was their mindset and business strategy since I was a computer science student in Tunku Abdul Rahman College. I used to read the legend of **Ingvar Kamprad** and just recall it.
+  
+  [宜家为何"永远不会上市"?](http://www.xcf.cn/tt2/201506/t20150609_750676.htm) roughly eleborate the background of the **IKEA**. There has another business legend from China which has own electronical business emperor although backcrupcy and had been jailed since few years ago. You might read [揭秘资本大鳄黄光裕的发家史--国美电器](http://blog.sina.com.cn/s/blog_5c4026610100babx.html) for further details.
+
+## 4.4 References
+
+  - [宜家为何"永远不会上市"?](http://www.xcf.cn/tt2/201506/t20150609_750676.htm)
+

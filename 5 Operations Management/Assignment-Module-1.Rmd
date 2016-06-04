@@ -22,9 +22,9 @@ link-citations: yes
 
   Apply the operations strategy framework to **IKEA**:
 
-1	Identify order qualifiers and winners, and tradeoffs based on its product offerings.
-2	Identify the operations capabilities that match its order winners and qualifiers.
-3	Develop operations strategy choices that would help each company achieve the operations capabilities you have identified.
+1.	Identify order qualifiers and winners, and tradeoffs based on its product offerings.
+2.	Identify the operations capabilities that match its order winners and qualifiers.
+3.	Develop operations strategy choices that would help each company achieve the operations capabilities you have identified.
 
   [IKEA](http://www.ikea.com/) is a Swedish furniture supplier that sells much more than furniture through its stores in 41 countries and relies on self-service in the store and self-assembly at home. Their website has links that include, for example, the [concept and design of IKEA](http://www.ikea.com/ms/en_US/this-is-ikea/the-ikea-concept/index.html), which you may find useful in identifying the order qualifiers and winners that the company offers its target customers and from which you can infer the trade-offs that Ikea is making and the operations capabilities that it is pursuing.
 
@@ -67,10 +67,10 @@ link-citations: yes
 
 # 4. Appendices
 
-  - Section [5.1 Documenting File Creation]
-  - Section [5.2 Versions' Log]
-  - Section [5.3 Speech and Blooper]
-  - Section [5.4 References]
+  - Section [4.1 Documenting File Creation]
+  - Section [4.2 Versions' Log]
+  - Section [4.3 Speech and Blooper]
+  - Section [4.4 References]
 
 ## 4.1 Documenting File Creation
 
@@ -84,7 +84,7 @@ link-citations: yes
   - [**tufte** package](https://github.com/rstudio/tufte) version: `r packageVersion('tufte')`
   - File version: 1.0.0
   - Author Profile: [®γσ, Eng Lian Hu](https://beta.rstudioconnect.com/englianhu/ryo-eng/)
-  - GitHub: [Source Code](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations)
+  - GitHub: [Source Code](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/tree/master/5%20Operations%20Management)
   - Additional session information:
 
 ```{r info, echo = FALSE, results = 'asis'}
@@ -95,7 +95,7 @@ Sys.info()
 
 ## 4.2 Versions' Log
 
-  - *May 28, 2016*: [version: 1.0.0](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations)
+  - *May 28, 2016*: [version: 1.0.0](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/5%20Operations%20Management/Assignment-Module-1.Rmd)
 
 ## 4.3 Speech and Blooper
 
