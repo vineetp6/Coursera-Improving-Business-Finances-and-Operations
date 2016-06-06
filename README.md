@@ -12,7 +12,8 @@
   4. Financial Evaluation and Strategy: Corporate Finance
   5. Operations Management
     - 1.1 [Assignment 1](http://rpubs.com/englianhu/operational-management-module1-assignment1)
-    - 1.2 [Assignment 2](http://rpubs.com/englianhu/186959)
+    - 1.2 [Assignment 2](http://rpubs.com/englianhu/187414)
+    - 2.1 [Assignment 1](http://rpubs.com/englianhu/187416)
   6. Process Improvement
   7. Improving Business Finances and Operations Capstone
 

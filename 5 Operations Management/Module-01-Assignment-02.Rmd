@@ -195,6 +195,8 @@ sm %>% kable(Caption = 'Table 2.4 : Operations Performance')
 
 # 3. Conclusion
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NaFvjp2QMsI" frameborder="0" allowfullscreen></iframe>
+
   There has only few importance figures took into counting in this assignment. If both balance sheet and income statement of a company is not faud, the operational perforamce might reflect the healthiness of a company. We/Investors can easily know the potential of growth/profitable, if the company is overvalued or undervalued and if it is worth or valued to invest their fund.
   
   There are a lot of figure that has not been states while it can be analysed and know the [*intrinsic value*](http://www.investopedia.com/terms/i/intrinsicvalue.asp) which is always quote and measure by [Warren Buffet](http://www.valuewalk.com/2014/03/warren-buffett-intrinsic-value-two-problems/).

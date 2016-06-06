@@ -1,0 +1,131 @@
+---
+title: "[Operations Management](https://www.coursera.org/learn/operations-management/home/welcome) : Module 2 Assignment 1"
+subtitle: "[Improving Business Finances and Operations Specialization](https://www.coursera.org/specializations/business-operations) by University of Illinois at Urbana-Champaign"
+author: "[®γσ, Eng Lian Hu](http://englianhu.wordpress.com) <img src='figure/ShirotoNorimichi.jpg' width='24'> 白戸則道®"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html:
+    toc: yes
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r load-pkgs, include = FALSE}
+suppressMessages(library('dplyr'))
+suppressMessages(library('magrittr'))
+suppressMessages(library('knitr'))
+#'@ suppressMessages(library('formattable'))
+```
+
+# 1. Introduction
+
+**Instructions**
+
+  The purpose of this assignment is to give you the opportunity to apply the concepts you have learned in this module and to discuss some of the key ideas of the module in your own words. Follow the instructions provided and respond to each question. This a required activity for this module.
+
+Submit your answers to each of the questions based on the information provided below. Enter your answers directly in the spaces provided in the My submission tab. You may save a draft of your work as you go, and you can come back later to continue working on your draft. When you are finished working, click the Preview button, verify your identity, and then click Submit for review to submit the assignment. Please answer each question fully and concisely.
+
+The discussion of the assignment solution is provided in the Module 2 Assignment 1 Solution video. Do the assignment on your own first, before viewing the assignment discussion video!
+
+**Module 2 Assignment 1**
+
+  Renovation Homeware has been manufacturing dining room furniture for several furniture outlets in the U.S. since 1969. The company is known for their dining room sets – tables, chairs, consoles, and sideboards – in which they offer tremendous choices and allow customization for dimensions, wood finish, upholstery, and fittings. The average promised lead time for their orders is eight weeks. Until recently, they were able to provide delivery within the promised due dates for 99.2% of orders, with an occasional slipup causing orders to be at most five days late. However, in the past two years, over 33% orders have been over three weeks late, leading to several complaints from buyers.
+
+  Renovation prides itself on the quality of the furniture they produce and their willingness to incorporate requests for changes until the last possible time until the order is released to production. Their manufacturing operation is set up by departments. Wood cutting, upholstery storage and cutting, assembly, hardware fitting, polishing, finishing, inspection, and packaging are organized as separate mini-shops, and furniture makes its way through these departments as needed. A sophisticated scheduling system helps them keep track of due dates and job schedules.
+
+  There has been a shift in the mix of orders for Renovation, and this shift appears to mirror a change in the customer mix. Compared to two years ago, order sizes of 1 to 5 sets of one type have been reduced to half of what they used to be, while order sizes of 45–50 sets of one type with hardly any customization have nearly doubled. The customer mix now includes more retail chains, besides the traditional boutique stores and interior designers. As a sign of this increasing trend, one of Renovation Homeware’s major customers, Eat-In Dining Rooms, recently contacted them with a potential order of 125 single type of dining room sets for their newly expanded stores and warehouses in the Midwestern U.S. This order is for one of the cheaper sets that Renovation makes and requires no other customization other than two wood finish types in the mix. Until now, Eat-In’s order quantities for any one set had been quite small, with the largest order size being 5, even when the total order was for a larger quantity of up to 100. For the current large-volume order, Eat-In is demanding a shorter lead time of six weeks and is pushing for a discounted price, citing the large quantity of the same set as a reason. Such demands for price discounts have also been brought up recently by buyers for several other furniture outlets, although it has never been an issue in the past.
+
+  The production manager for Renovation, Cynthia Natarajan, is in a fix. On the one hand, there is the potential for increasing sales by accepting large orders of identical sets, albeit at discounted prices. On the other hand, she has longstanding customers of customized sets complaining about slipping on delivery dates and workmanship. She is also not sure how she can provide the high volume orders at shorter lead times. The marketing manager, Vera DeLillo, believes that customers deserve the quantity discounts for larger orders and does not see why Cynthia is not able to extract efficiencies from large volumes of the same sets as well as provide products more quickly than before.
+
+  Cynthia believes that there are some long-term operations strategy decisions that need to be made and that may need investments in the production process. She has scheduled a meeting with the marketing manager, Vera DeLillo, and the managing director, Gene Phang, to explain, from an operations management perspective:
+
+(1)	The causes of the current delivery date problems and the challenges in accepting the new large-volume orders with the current process design
+
+(2)	A proposed process design for accepting the new large-volume orders while continuing to serve the remaining customized orders customers.
+
+(3)	Other solutions for consideration that would require a shift in overall business strategy
+
+Based on general guidelines about matching process arrangements to product requirements, please help Cynthia Natarajan put together information on all three topics.
+
+# 2. Operational Concepts
+
+## Part 1
+
+  Discuss the causes of the current delivery date problems and the challenges in accepting the new large-volume orders with the current process design.
+
+  Let's summarise the problem, the previous orders might a lot of scattered customers who order 1-5 sets but now the orders by wholesalers/retailer chain for 45-50 sets have blooming.
+
+- **Insufficient resource**: Insufficient staffs to produce high volume orders. It might includes the stockkeepers, delivery mans, and production staffs. The existing machine, delivery transportation and also the supplied material might also insufficient. There has another issue which might probably existing huge cargo for logistics have not enough as well. The high volume orders might probably includes diversified design of products. A high volume of diversified products might probably need higher technological machine to produce it compare to existing machine.
+- **Skilled staffs**: Due to the high volume orders have blooming recent two years, the existing skilled staffs unable handle sudden high volume orders smoothly. Meanwhile, there might probably new employed staffs not yet master the skills.
+- **The smoothness of operation flow**: Insufficiency of resource on manpower, materials, machine, logistics might cause the conflicts of priority and also sufficiency of stocks for delivery. For example, some return stocks might disturb the planned logistical line. 
+- **Productivity**: The high volume orders might exhaust a lot of human resource as well as machine. For example, the machines keep up running 24 hours everyday might need mainatenance. Insufficient staff might forced existing staffs to work overtime in order to completed the stocks. However longtime working without rest/idle time might decrease the productivity of staffs. Same with inssuficient machine while some need to be maintain for continue using.
+- **Customization of orders**: When the volume of orders increasing, the number of customization request on the design for the products will also increase. The customization request from customers might always interrupt the process of produce. Let say a customer request to change the design upon get the view of the products, if who keep request to modify the design during the process of produce the product a high cost might made to the company. Besides, the completion and also delivery time spending will be increase.
+
+## Part 2
+
+  Propose a process design for accepting the new large-volume orders while continuing to serve the remaining customized orders customers.
+
+- **Limitation**: Set a limit of customization request, for example a customer might only entitle free charges customization for two times. There will be a certain charges after that.
+- **Time restriction**: Set a closing time for customization request in advance to start stocks-in and produce the products. A high volume order might need a lot of raw material to produce while a time setting will reduce the probability of stock return to supplier. It will affect the business cooperation between the company and also material suppliers if the frequency of stock return request is high. Other than that, a certain charges might also cost to the company since the material suppliers have other distributors and buyers.
+
+## Part 3
+
+  Discuss other solutions for consideration that would require a shift in overall business strategy.
+
+- **Downpayment**: A certain amount or percentage of the price for the orders need to be paid in order to reduce the loss of stock return. High volume orders do not means all will be receivable sales. If the marketing department keep hard selling with promotion with discounted price or booking without down-payment might probably make loss to company. For example, a high volume of stock return might loss all the costs (overhead cost, fixed rental and utilities cost, material cost, salary wages flexible cost etc.) to produce the product and eventually return back. The store will occupied with a lot of returned stock. The durability of wooden furniture might not very long since it might be spoiled due to erosion by termites in store. A certain period of fund chasing need to be scheduled to manage the success of receive the receivable debt from sales.
+- **Number of diversified products**: A certain maximum set of orders might probably given by production manager based on their department's capability. Some furniture might cost a lot of time to produce compare to others. A list of the products and time spending schedule or time table will easier for whole operation flow since production manager might estimate how much of furniture might completed within a certain period and predictable and easier for marketing department to elaborate to customers about the estimated delivery time.
+- **Statistical Analysis**: Besides, there will be a long term benefit if accounting department can apply statistical analysis on the cost per raw material and per item of very single product (includes analyse the mean, standard errors, and count in the average spoiled items might probably occurred within a certain number of products) will easily to know the operating cost and also price setting, discount rate for wholesalers etc and the profit will be more easier to control. A certain discount might apply to reduce the bad debts and increase the receivable debts.
+- **Logistics**: The high volume orders might come from everywhere around US. The new opened store in Midwestern US will definitely increase the delivery time. However a schedule and the clients within territory need to be assign to easier for stocks delivery and also customer servicing. Since the company has a sophisticated scheduling system (Assume the system is similar with Walmart, which is the distributors and suppliers can directly know their stocks level, location of stocks, price of stocks, connecting store is which nearest store etc. It will make both distributors and also suppliers manage their stocks by themselves with certain authority) the distributors within the area might easily know the stocks and when need to be refilled.
+
+# 3. Conclusion
+
+  I tried to write my answer above based on my understanding on the assignment prior to watch below video. I do say sorry since my Enlish language is not good. Kindly refer to below answer provided by Professor.
+  
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/6P8m7BTA-Lc" frameborder="0" allowfullscreen></iframe>
+
+# 4. Appendices
+
+  - Section [4.1 Documenting File Creation]
+  - Section [4.2 Versions' Log]
+  - Section [4.3 Speech and Blooper]
+  - Section [4.4 References]
+
+## 4.1 Documenting File Creation
+
+  It's useful to record some information about how your file was created.
+  
+  - File creation date: 2016-06-06
+  - File latest updated date: `r Sys.Date()`
+  - `r R.version.string`
+  - R version (short form): `r getRversion()`
+  - [**rmarkdown** package]() version: `r packageVersion('rmarkdown')`
+  - [**tufte** package](https://github.com/rstudio/tufte) version: `r packageVersion('tufte')`
+  - File version: 1.0.0
+  - Author Profile: [®γσ, Eng Lian Hu](https://beta.rstudioconnect.com/englianhu/ryo-eng/)
+  - GitHub: [Source Code](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/tree/master/5%20Operations%20Management)
+  - Additional session information:
+
+```{r info, echo = FALSE, results = 'asis'}
+lubridate::now()
+devtools::session_info()$platform
+Sys.info()
+```
+
+## 4.2 Versions' Log
+
+  - *May 28, 2016*: [version: 1.0.0](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/5%20Operations%20Management/Module-02-Assignment-01.Rmd)
+
+## 4.3 Speech and Blooper
+
+  Same as pevious assignment --- [Operations Management : Module 1 Assignment 1](http://rpubs.com/englianhu/operational-management-module1-assignment1), I do appreciate that [University of Illinois at Urbana–Champaign](http://illinois.edu/) provides the management course via [Coursera](http://www.coursera.org). I used to work in FujiXerox as customer service operator for one month and learnt the logistics for printer service maintanance around Taiwan province. Besides, I learnt some knowledge about sales-stocks flowchart when I work as a salesman in Maybooks few month ago. I am a newbie in marketing, cost measurement and inventory management as well as whole operating chain. Keep up learning and hope to learn some management skills and knowledges from **Operations Management**.
+
+## 4.4 References
+
+  - [How does Warren Buffett value a business?](https://www.quora.com/How-does-Warren-Buffett-value-a-business)
+
