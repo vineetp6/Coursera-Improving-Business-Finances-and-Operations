@@ -14,6 +14,8 @@
     - 1.1 [Assignment 1](http://rpubs.com/englianhu/operational-management-module1-assignment1)
     - 1.2 [Assignment 2](http://rpubs.com/englianhu/187414)
     - 2.1 [Assignment 1](http://rpubs.com/englianhu/187416)
+    - 2.2 [Assignment 2](http://rpubs.com/englianhu/187642)
+    - 3   [Assignment](http://rpubs.com/englianhu/188394)
   6. Process Improvement
   7. Improving Business Finances and Operations Capstone
 

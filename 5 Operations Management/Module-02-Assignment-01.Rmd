@@ -60,10 +60,12 @@ Based on general guidelines about matching process arrangements to product requi
   Discuss the causes of the current delivery date problems and the challenges in accepting the new large-volume orders with the current process design.
 
   Let's summarise the problem, the previous orders might a lot of scattered customers who order 1-5 sets but now the orders by wholesalers/retailer chain for 45-50 sets have blooming.
-
+  
+  We can know the company is small but not a huge business group since previously majority orders are 1-5 sets but recent 2 years became mostly on 45-50 sets and maximum 100 sets.
+  
 - **Insufficient resource**: Insufficient staffs to produce high volume orders. It might includes the stockkeepers, delivery mans, and production staffs. The existing machine, delivery transportation and also the supplied material might also insufficient. There has another issue which might probably existing huge cargo for logistics have not enough as well. The high volume orders might probably includes diversified design of products. A high volume of diversified products might probably need higher technological machine to produce it compare to existing machine.
 - **Skilled staffs**: Due to the high volume orders have blooming recent two years, the existing skilled staffs unable handle sudden high volume orders smoothly. Meanwhile, there might probably new employed staffs not yet master the skills.
-- **The smoothness of operation flow**: Insufficiency of resource on manpower, materials, machine, logistics might cause the conflicts of priority and also sufficiency of stocks for delivery. For example, some return stocks might disturb the planned logistical line. 
+- **The smoothness of operation flow**: Insufficiency of resource on manpower, materials, machine, logistics might cause the conflicts of priority and also sufficiency of stocks for delivery. For example, some return stocks might disturb the planned logistical line. There will be another issue to the logistics staffs work in new opened store in Midwestern US where they are not familiar with the location of the distributors/agencies to avoid the heavily traffic routes.
 - **Productivity**: The high volume orders might exhaust a lot of human resource as well as machine. For example, the machines keep up running 24 hours everyday might need mainatenance. Insufficient staff might forced existing staffs to work overtime in order to completed the stocks. However longtime working without rest/idle time might decrease the productivity of staffs. Same with inssuficient machine while some need to be maintain for continue using.
 - **Customization of orders**: When the volume of orders increasing, the number of customization request on the design for the products will also increase. The customization request from customers might always interrupt the process of produce. Let say a customer request to change the design upon get the view of the products, if who keep request to modify the design during the process of produce the product a high cost might made to the company. Besides, the completion and also delivery time spending will be increase.
 
@@ -73,6 +75,21 @@ Based on general guidelines about matching process arrangements to product requi
 
 - **Limitation**: Set a limit of customization request, for example a customer might only entitle free charges customization for two times. There will be a certain charges after that.
 - **Time restriction**: Set a closing time for customization request in advance to start stocks-in and produce the products. A high volume order might need a lot of raw material to produce while a time setting will reduce the probability of stock return to supplier. It will affect the business cooperation between the company and also material suppliers if the frequency of stock return request is high. Other than that, a certain charges might also cost to the company since the material suppliers have other distributors and buyers.
+- **Minimum Requirement**: Set a minimum requirement to customers/wholesalers which is only order a certain amount can be entitled the benefit.
+
+```{r custom, echo = FALSE}
+cus <- data.frame(`Order Amount` = c(levels(cut(1:100, breaks = seq(0, 100, 5))), '>100'), `Number of Allowed Customization` = c(rep(0, 5), rep(1, 5), rep(2, 4), rep(3, 3), rep(4, 3), 'unlimit'), `Allowed Customization Days In Advance` = c(rep(0, 8), rep(1, 7), rep(2, 6)), `Estimated Delivery Time in Week` = c(rep(1, 4), rep(2, 4), rep(3, 4), rep(4, 3), rep(5, 3), rep(6, 2), rep(7, 1))) %>% tbl_df
+
+cus$Order.Amount <- as.character(cus$Order.Amount)
+cus$Order.Amount[1] <- '(1,5]'
+cus$Order.Amount <- factor(cus$Order.Amount)
+
+cus %>% kable(caption = 'Customization Service to Customers')
+```
+
+*Table 2.1: Sample table of customization service*
+
+  Above is a sample table to differentiate the customization service provides to customers based on different **Order Amount**, The allowed days for customization count from the date of signed order. The estimated delivery time (in week unit) is count from the date of signed order. Due to I never work in furniture industry and unable to estimate the delivery time, here I simply set a time duration for sample only.
 
 ## Part 3
 
@@ -82,10 +99,120 @@ Based on general guidelines about matching process arrangements to product requi
 - **Number of diversified products**: A certain maximum set of orders might probably given by production manager based on their department's capability. Some furniture might cost a lot of time to produce compare to others. A list of the products and time spending schedule or time table will easier for whole operation flow since production manager might estimate how much of furniture might completed within a certain period and predictable and easier for marketing department to elaborate to customers about the estimated delivery time.
 - **Statistical Analysis**: Besides, there will be a long term benefit if accounting department can apply statistical analysis on the cost per raw material and per item of very single product (includes analyse the mean, standard errors, and count in the average spoiled items might probably occurred within a certain number of products) will easily to know the operating cost and also price setting, discount rate for wholesalers etc and the profit will be more easier to control. A certain discount might apply to reduce the bad debts and increase the receivable debts.
 - **Logistics**: The high volume orders might come from everywhere around US. The new opened store in Midwestern US will definitely increase the delivery time. However a schedule and the clients within territory need to be assign to easier for stocks delivery and also customer servicing. Since the company has a sophisticated scheduling system (Assume the system is similar with Walmart, which is the distributors and suppliers can directly know their stocks level, location of stocks, price of stocks, connecting store is which nearest store etc. It will make both distributors and also suppliers manage their stocks by themselves with certain authority) the distributors within the area might easily know the stocks and when need to be refilled.
+- **Customers Classification**: Categorize customers level in order to eaisier for operation. We can categorize ordinary, bronze class, silver class, gold class and platinium class customers to enjoy different benefit. The services provided are defference accordingly. The database can be included the number of complaint and also the type of complaint in order to categorise the priority to solve. The more number of complaint on a particular issue will be higher priority to solve. The *Table 2.1* is a simple table to categorise the customers.
+- **Differentiate Department**: Base on the **Customers Classification**, the furniture company might seperate 6 operational teams/departments to produce the ordinary, bronze class, silver class, gold class, platinium class and also a special team while the number of staffs will be different as well. Standardize the production line will increase the productivity since different team will easily learn how to handle the certain amount of orders and customers' class. Meanwhile the skilled staffs might take turn to exchange between classes/teams to learn how to different customers' class. The world first CEO --- Jack Welch used to emphasize the trainning, research and development deopartment is the core department in General Electric. The exchange between teams/departments might consider as a trainning during working for small company while there will be best if the company can setup a training department to assess the quality of staffs every week to maintain at a certain level of quality of company for long term growth.
 
 # 3. Conclusion
 
-  I tried to write my answer above based on my understanding on the assignment prior to watch below video. I do say sorry since my Enlish language is not good. Kindly refer to below answer provided by Professor.
+  I tried to write my answer above based on my understanding on the assignment prior to watch below video. I do say sorry since my Enlish language is not good. Below is the answer from my peer.
+  
+```
+Part 1
+
+Discuss the causes of the current delivery date problems and the challenges in accepting the new large-volume orders with the current process design.
+The causes of the current delivery date problems are below highlighted:-
+
+          - Company’s existing capabilities and product requirements by customers is in misalignment and late delivery being the consequence.
+
+          - Existing process design cannot effectively address customer varying needs.
+
+          - Orders traffic has increased considerably in recent times especially for standardized products and therefore affecting the lead time.
+
+
+
+The challenges in accepting the new large-volume orders with the current process design are:-
+
+          - Inevitable late delivery.
+
+          - Total system constraint as the job shop environment is not designed for large repetitive production system.
+
+         -Job shop is characterized by high-mix, low-volume production, therefore difficulty in maintaining large quantity of raw material                inventories may be experienced.
+
+          -Overtime may be invoked so as to meet delivery schedules.
+
+          -Paradigm shift to batch arrangement from make-to-order demand driven business model might not be feasible overnight.
+
+Part 1 is worth 5 points total. Points are only given for correct/reasonable answers in the manner specified below; incorrect/unreasonable answers get zero points.
+
+0 pts No answer, or irrelevant answer
+
+1 pt Superficial mention of one process design aspect or operations strategy concept applicable to the question
+
+2 pts One specific process design aspect or operations strategy concept correctly covered in the answer, with specific connection to the context of the case
+
+3 pts Superficial mention of another (beyond the one mentioned for first 2 points) process design aspect or operations strategy concept applicable to the question
+
+4 pts Two specific process design aspects or operations strategy concepts correctly covered in the answer, with specific connections to the context of the case.
+
+5 pts Appropriate tie back to the larger problems of the company.
+
+
+
+Part 2
+
+Propose a process design for accepting the new large-volume orders while continuing to serve the remaining customized orders customers.
+Propose a process design is as follows:
+
+          - On the same facility run job shop for high-mix, customized, and low production items and on the other hand, batch for standardized high volume items, while  minimizing change over time.
+
+          - Without investing more on assets and labor force, adopt ‘make to stock’ for the large volume orders and then ‘make to order’ for the customized product  as appropriate.
+
+Part 2 is worth 5 points total. Points are only given for correct/reasonable answers in the manner specified below; incorrect/unreasonable answers get zero points.
+
+0 pts No answer, or irrelevant answer
+
+1 pt Superficial mention of one process design aspect or operations strategy concept applicable to the question
+
+2 pts One specific process design aspect or operations strategy concept correctly covered in the answer, with specific connection to the context of the case
+
+3 pts Superficial mention of another (beyond the one mentioned for first 2 points) process design aspect or operations strategy concept applicable to the question
+
+4 pts Two specific process design aspects or operations strategy concepts correctly covered in the answer, with specific connections to the context of the case
+
+5 pts Appropriate tie back to the larger problems of the company
+
+
+
+Part 3
+
+Discuss other solutions for consideration that would require a shift in overall business strategy.
+Settle for Standard items production while giving up on customized items:
+
+          -Since the company has potential to fulfill large order at low price, the production line can be reconfigured to serve such purpose all things being equal.
+
+          -Low skilled workforce can be injected into the system  to optimize output at low cost.
+
+          -Efficiently utilize  all available resources with quality in focus for enhanced customer experience.
+
+          -Large inventory of raw material will result in lower production cost.
+
+
+Settle for customized items while trading off Standard items:
+
+          -Optimize existing capabilities to serve your customers better.
+
+          -Improve on job shop arrangement to engender a shorter lead time.
+
+          -Reduces non value adding activities to enable accurate promise delivery date to customers.
+
+          -Ensure material is always available as it is a critical factor on the job loading time and production lead time.
+
+Part 3 is worth 5 points total. Points are only given for correct/reasonable answers in the manner specified below; incorrect/unreasonable answers get zero points.
+
+0 pts No answer, or irrelevant answer
+
+1 pt Superficial mention of one process design aspect or operations strategy concept applicable to the question
+
+2 pts One specific process design aspect or operations strategy concept correctly covered in the answer, with specific connection to the context of the case
+
+3 pts Superficial mention of another (beyond the one mentioned for first 2 points) process design aspect or operations strategy concept applicable to the question
+
+4 pts Two specific process design aspects or operations strategy concepts correctly covered in the answer, with specific connections to the context of the case.
+
+5 pts Appropriate tie back to the larger problems of the company
+```
+  
+  Kindly refer to below answer provided by Professor.
   
   <iframe width="560" height="315" src="https://www.youtube.com/embed/6P8m7BTA-Lc" frameborder="0" allowfullscreen></iframe>
 
