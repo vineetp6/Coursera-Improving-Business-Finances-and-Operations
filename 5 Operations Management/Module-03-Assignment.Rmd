@@ -1,5 +1,5 @@
 ---
-title: "[Operations Management](https://www.coursera.org/learn/operations-management/home/welcome) : Module 3 Assignment"
+title: "[Operations Management](https://www.coursera.org/learn/operations-management/home/welcome) : Module 4 Assignment"
 subtitle: "[Improving Business Finances and Operations Specialization](https://www.coursera.org/specializations/business-operations) by University of Illinois at Urbana-Champaign"
 author: "[®γσ, Eng Lian Hu](http://englianhu.wordpress.com) <img src='figure/ShirotoNorimichi.jpg' width='24'> 白戸則道®"
 date: "`r Sys.Date()`"
@@ -37,13 +37,13 @@ op <- options(gvis.plot.tag = 'chart')
 
   Submit your answers to each of the questions based on the information provided below. Enter your answers directly in the spaces provided in the My submission tab. You may save a draft of your work as you go, and you can come back later to continue working on your draft. When you are finished working, click the Preview button, verify your identity, and then click Submit for review to submit the assignment. Please answer each question fully and concisely.
 
-## 1.2 Summary
+The discussion of the assignment solution is provided in the Module 4 Assignment Solution video. Do the assignment on your own first, before viewing the assignment discussion video!
 
-  The discussion of the assignment solution is provided in the Module 3 Assignment Solution video. Do the assignment on your own first, before viewing the assignment discussion video!
+For this assignment you will need the data in these spreadsheets:
 
-  Bintu Fehrenbacher owns five kiosks in the Mall of America in Minneapolis, Minnesota. Every 13 weeks, she orders 2,600 smartphones for combined sales in her kiosks. She has recorded weekly sales for the last two years (52 weeks per year), and this data is available to you in the following table. Bintu incurs a cost of \$200 every time she places an order. Her average cost of each smartphone is \$50. Her cost of capital is 11%. She incurs an additional insurance cost of 1 cent per week for every phone in inventory.
-
-  Data for two years (also available in the [Module3_Assignment_Data.xlsx](https://d396qusza40orc.cloudfront.net/operationsmanagement/spreadsheets/Module3_Assignment_Data.xlsx) spreadsheet):
+- [Module4_Assignment_Table1.xlsx](https://d396qusza40orc.cloudfront.net/operationsmanagement/spreadsheets/Module4_Assignment_Table1.xlsx)
+- [Module4_Assignment_RawData.xlsx](https://d396qusza40orc.cloudfront.net/operationsmanagement/spreadsheets/Module4_Assignment_RawData.xlsx)
+- [Module4_Assignment_Table2.xlsx](https://d396qusza40orc.cloudfront.net/operationsmanagement/spreadsheets/Module4_Assignment_Table2.xlsx)
 
 ```{r data, echo = FALSE, results = 'asis'}
 #'@ dat <- read_excel(path = './5 Operations Management/data/Module3_Assignment_Data.xlsx') %>% tbl_df

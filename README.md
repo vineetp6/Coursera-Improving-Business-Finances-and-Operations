@@ -21,7 +21,7 @@
     - Module 2: *Process Analysis* [Assignment 1](http://rpubs.com/englianhu/187416)
     - Module 2: *Process Analysis* [Assignment 2](http://rpubs.com/englianhu/187642)
     - Module 3: *Inventory and Supply Chain Management* [Assignment](http://rpubs.com/englianhu/188394)
-    - Module 4: *Quality Management* [Assignment]()
+    - Module 4: *Quality Management* [Assignment](http://rpubs.com/englianhu/188858)
   6. Process Improvement
   7. Improving Business Finances and Operations Capstone
 
