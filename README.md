@@ -16,12 +16,12 @@
     - Module 4: *Investment Finance and Corporate Finance: Firm Valuation* [Assignment 5 & Microsoft Example: Valuing a Firm]()
   4. Financial Evaluation and Strategy: Corporate Finance
   5. Operations Management
-    - Module 1: *Operations Strategy* [Assignment 1](http://rpubs.com/englianhu/operational-management-module1-assignment1)
-    - Module 1: *Operations Strategy* [Assignment 2](http://rpubs.com/englianhu/187414)
-    - Module 2: *Process Analysis* [Assignment 1](http://rpubs.com/englianhu/187416)
-    - Module 2: *Process Analysis* [Assignment 2](http://rpubs.com/englianhu/187642)
-    - Module 3: *Inventory and Supply Chain Management* [Assignment](http://rpubs.com/englianhu/188394)
-    - Module 4: *Quality Management* [Assignment](http://rpubs.com/englianhu/188858)
+    - Module 1: *Operations Strategy* [Assignment 1](http://rpubs.com/englianhu/operational-management-module1-assignment1), [Alternative link](http://englianhu.github.io/2016/06/operations%20management/Module-01-Assignment-01.html)
+    - Module 1: *Operations Strategy* [Assignment 2](http://rpubs.com/englianhu/187414), [Alternative link](http://englianhu.github.io/2016/06/operations%20management/Module-01-Assignment-02.html)
+    - Module 2: *Process Analysis* [Assignment 1](http://rpubs.com/englianhu/187416), [Alternative link](http://englianhu.github.io/2016/06/operations%20management/Module-02-Assignment-01.html)
+    - Module 2: *Process Analysis* [Assignment 2](http://rpubs.com/englianhu/187642), [Alternative link](http://englianhu.github.io/2016/06/operations%20management/Module-02-Assignment-02.html)
+    - Module 3: *Inventory and Supply Chain Management* [Assignment](http://rpubs.com/englianhu/188394), [Alternative link](http://englianhu.github.io/2016/06/operations%20management/Module-03-Assignment.html)
+    - Module 4: *Quality Management* [Assignment](http://rpubs.com/englianhu/188858), [Alternative link](http://englianhu.github.io/2016/06/operations%20management/Module-04-Assignment.html)
   6. Process Improvement
   7. Improving Business Finances and Operations Capstone
 
