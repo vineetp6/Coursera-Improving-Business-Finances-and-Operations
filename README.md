@@ -8,6 +8,7 @@
 
   1. Managerial Accounting: Cost Behaviors, Systems, and Analysis
   2. Managerial Accounting: Tools for Facilitating and Guiding Business Decisions
+    - Module 1: *Mini-Project*
   3. Financial Evaluation and Strategy: Investments
     - Module 1: *Investments Toolkit and Portfolio Formation* [Assignment 1 & Discussion: Portfolio Choice When Change Correlations]()
     - Module 1: *Investments Toolkit and Portfolio Formation* [Assignment 2 & Discussion: Calculating More Efficient Portfolios]()
