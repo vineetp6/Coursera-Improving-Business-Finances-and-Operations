@@ -10,7 +10,7 @@
   2. Managerial Accounting: Tools for Facilitating and Guiding Business Decisions
     - Module 1: *Mini-Project*
   3. Financial Evaluation and Strategy: Investments
-    - Module 1: *Investments Toolkit and Portfolio Formation* [Assignment 1 & Discussion: Portfolio Choice When Change Correlations]()
+    - Module 1: *Investments Toolkit and Portfolio Formation* [Assignment 1 & Discussion: Portfolio Choice When Change Correlations](http://rpubs.com/englianhu/tools-for-facilitating-and-guiding-business-decisions-assignment-1)
     - Module 1: *Investments Toolkit and Portfolio Formation* [Assignment 2 & Discussion: Calculating More Efficient Portfolios]()
     - Module 2: *Motivating, Explaining, & Implementing the Capital Asset Pricing Model (CAPM)* [Assignment 3 & Discussion: Analyzing & Identifying Three Mystery Securities]()
     - Module 3: *Testing the CAPM, Multifactor Models, & Market Efficiency* [Assignment 4 & Discussion: Analysis and Recommendation of 50 Balanced Funds, 1995-2014]()

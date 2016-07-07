@@ -29,6 +29,13 @@ op <- options(gvis.plot.tag = 'chart')
 
 # 1. Introduction
 
+  - Section [1.1 Instructions]
+    + Section [1.1.1 Overview]
+    + Section [1.1.2 How to Use Peer Review]
+    + Section [1.1.3 Assignment Details]
+  - Section [1.2 Review Criteria]
+  - Section [1.3 Reminders]
+
 ## 1.1 Instructions
 
 ### 1.1.1 Overview
@@ -103,6 +110,12 @@ Your Deliverable
   Please remember that you have agreed to the Honor Code, and your submission should be entirely yours. Our definition of plagiarism follows from standard literature: passing off someone else's work as your own, whether from your peers or Wikipedia. If you need to quote material, remember to cite your source, for example: "But, as expressed by Spinoza, all things excellent are as difficult as they are rare (Baruch Spinoza, "Ethica" source: thinkexist.com)."
 
 # 2. Case Study
+
+  - Section 2.1 [Summary]
+  - Section 2.2 [Part 1]
+  - Section 2.3 [Part 2]
+  - Section 2.4 [Part 3]
+  - Section 2.5 [Part 4]
 
 ## Summary
 
@@ -410,7 +423,7 @@ options(op)
   - [**tufte** package](https://github.com/rstudio/tufte) version: `r packageVersion('tufte')`
   - File version: 1.0.0
   - Author Profile: [®γσ, Eng Lian Hu](https://beta.rstudioconnect.com/englianhu/ryo-eng/)
-  - GitHub: [Source Code](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/tree/master/5%20Operations%20Management)
+  - GitHub: [Source Code](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/tree/master/2%20Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions)
   - Additional session information:
 
 ```{r info, echo = FALSE, results = 'asis'}
@@ -421,13 +434,13 @@ Sys.info()
 
 ## 4.2 Versions' Log
 
-  - *July 02, 2016*: [version: 1.0.0](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/5%20Operations%20Management/Module-04-Assignment.Rmd)
+  - *July 02, 2016*: [version: 1.0.0](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/2%20Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/Module-01-Assignment.Rmd)
 
 ## 4.3 Speech and Blooper
 
   I do appreciate that [University of Illinois at Urbana–Champaign](http://illinois.edu/) provides the [Improving Business Finances and Operations](https://www.coursera.org/specializations/business-operations) specialization via [Coursera](http://www.coursera.org). I used to study [Certified Accounting Technician (CAT)](http://www.accaglobal.com/ie/en/student/exam-support-resources/foundation-level-study-resources.html) course at [PAAC](http://www.paac.edu.my/index.php?p=location) more more decade. Now I need to review the finance and accounting course prior to conduct my research [Analyse the Finance and Stocks Price of Bookmakers](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers).
   There are few books that I need to read for further understanding.
-  - [Managerial Accounting]()
+  - [Managerial Accounting](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/2%20Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/data/Managerial%20Accounting.pdf)
   - [**Financial Statement** A Step-by-Step Guide to Understanding and Creating Financial Reports *by Thomas R. Ittelson 2009*](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers/blob/master/data/finance.pdf)
 
 ```
@@ -438,7 +451,7 @@ The biggest driver of sales growth was Bwin's sports betting and casino operatio
 ## 4.4 References
 
   1. [HFR Industry Reports](https://www.hedgefundresearch.com/hfr-industry-reports)
-  2. [**The Evolving Dynamics of the Hedge Fund Industry** *2015 Global Hedge Fund and Investor Survey*]()
+  2. [**The Evolving Dynamics of the Hedge Fund Industry** *2015 Global Hedge Fund and Investor Survey*](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/2%20Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/data/The%20Evolving%20Dynamics%20of%20the%20Hedge%20Fund%20Industry%202015.pdf)
   3. [**Mugs and Millionaires: Inside the Murky World of Professional Football Gambling** *by Ed Hawkins 2014*](http://bleacherreport.com/articles/2200795-mugs-and-millionaires-inside-the-murky-world-of-professional-football-gambling)
   4. [**Inside Starlizard: The story of Britain's most successful gambler and the secretive company that helps him win** *by Oscar Williams Grut 2016*](http://www.businessinsider.my/inside-story-star-lizard-tony-bloom-2016-2/?r=UK&IR=T#zP2CXUxHzPL9Armk.97)
   5. [**Annual & Interim Reports (including Sportingbet and bwin.party)**](http://www.gvc-plc.com/html/investor/annual_report.asp)
