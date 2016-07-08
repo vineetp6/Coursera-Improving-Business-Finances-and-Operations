@@ -61,7 +61,7 @@ op <- options(gvis.plot.tag = 'chart')
 ```{r data1, echo = FALSE, results = 'asis'}
 dat <- data_frame(Category = c('Immediate Outflow', 'Cash Savings', 'Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6'), `Option A` = c(100000, NA, 10000, 50000, 20000, 70000, 80000, 10000), `Option B` = c(250000, NA, 1000, 2000, 3000, 1000, 20000, 390000)) %>% mutate(`Playback A` = c(-`Option A`[1:2], cumsum(`Option A`[-c(1:2)]) - `Option A`[1]), `Playback B` = c(-`Option B`[1:2], cumsum(`Option B`[-c(1:2)]) - `Option B`[1]))
 
-dat %>% kable(caption = 'Cash Flow of Cut Here Inc. within 6 Years')
+datatable(dat)
 ```
 
 *table 1.1.3.1: Cash flow of Cut Here Inc. beyond 6 years.*
@@ -176,7 +176,7 @@ $$\frac{Outflow - \sum_{n = 6}^{i = 1,2,3...}Saving}{Outflow}$$
 
 **3 Net present value**
 
-```{r data2.1.2, echo = FALSE, results = 'asis'}
+```{r data2.1.3, echo = FALSE, results = 'asis'}
 npv <- dat[1:3] %>% mutate(`NPV A` = round(`Option A` * 1 / 1.16^c(0, 0, seq(1, 6)), 2), `NPV B` = round(`Option B` * 1 / 1.16^c(0, 0, seq(1, 6)), 2))
 
 dat1b <- data.frame(Category = 'Total in 6 Years', t(data.frame(colSums(npv[-c(1:2), -1]))))
@@ -189,29 +189,56 @@ datatable(npv)
 
 *table 2.1.3: NPV cash flow of Cut Here Inc.*
 
+*What is 'Internal Rate Of Return - IRR'*
+
+  Internal rate of return (IRR) is a metric used in capital budgeting measuring the profitability of potential investments. Internal rate of return is a discount rate that makes the net present value (NPV) of all cash flows from a particular project equal to zero. IRR calculations rely on the same formula as NPV does.
+
+  Read more: [Internal Rate Of Return (IRR) Definition | Investopedia](http://www.investopedia.com/terms/i/irr.asp#ixzz4DoApl4CU)
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kDPmQ6dNxTk" frameborder="0" allowfullscreen></iframe>
 
   Lets assume that the annual return rate is 16%.
 
-  - *NPV* for Option A = `r tail(npv$NPV.A, 1) - npv$NPV.A[1]`, therefore it is a profitable investment.
-  - *NPV* for Option B = `r tail(npv$NPV.B, 1) - npv$NPV.B[1]`, therefore it is NOT a profitable investment.
+  - *NPV* for Option A = `r as.character(tail(npv$NPV.A, 1))` - `r as.character(npv$NPV.A[1])` = `r as.character(tail(npv$NPV.A, 1) - npv$NPV.A[1])`, therefore it is a profitable investment.
+  - *NPV* for Option B = `r as.character(tail(npv$NPV.B, 1))` - `r as.character(npv$NPV.B[1])` = `r as.character(tail(npv$NPV.B, 1) - npv$NPV.B[1])`, therefore it is NOT a profitable investment.
 
-**4 Internal rate of return**
+**4 Internal Rate of Return**
+
+  To calculate IRR using the formula, one would set NPV equal to zero and solve for the discount rate r, which is here the IRR. Because of the nature of the formula, however, IRR cannot be calculated analytically, and must instead be calculated either through trial-and-error or using software programmed to calculate IRR.
+
+  Read more: [Internal Rate Of Return (IRR) Definition | Investopedia](http://www.investopedia.com/terms/i/irr.asp#ixzz4DoApl4CU) or [Internal Rate of Return (IRR)](http://www.investinganswers.com/financial-dictionary/investing/internal-rate-return-irr-2130) for further details.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/y0eelK0RM0w" frameborder="0" allowfullscreen></iframe>
 
+<s>
+
+  - *IRR* for Option A = 
+  - *IRR* for Option B = 
+
+</s>
 
 ## Part 2
 
   Based on what you calculated in Part 1, which option would you recommend to Cut Here management?
 
-
+  - *Payback* for project A is 3.29 Years and 5.57 years for project B. Means that the cost invested on project A will be even on 3.29 years and begin make money after that.
+  - *Accounting Rate of Return* for project A is 23.33% and project B is 11.13%. Since the average return for project A across 6 years around 23.33% and it is better than project B.
+  - *NPV* for project A is favor and profitable investment, but for project B is not a profitable investment since a big portion of return will be cash in in the 6th years.
+  - <s> *IRR* for project A... project B...</s>
+  
+  A health cashflow need to be smoothly and project A can make it, while the project B will faced cash flow problem and might looking for loan from bank before 6th year (if that is an opprtunity cost for company which is the company has no extra cash).
+  
+  From the project A, we can conclude that it is profitable from a short term period. The project B might probably a very huge project, for example a telecomunication company might invest a huge fund but there will be a profitable project for long term. Who knows year 7 will generates millions return? For example, George Soros and a lot of hedge fund will using few years time to observe and make an unexpected high return during financial crisis once.
+  
+  As a businessman, project A will be faster to make profit, and will not face a tigh cashflow problem compare to project B, and it is worth to invest unless the businessman has sufficient fund for cashflow before year 6, then it will be different story.
 
 ## Part 3
 
   Describe some of the strengths and weaknesses of your analysis (i.e., specific measures, etc.). Also, what other considerations might influence your recommendation?
 
-
+  I am not understanind *IRR* even though read some references. I've just based on the cashflow and return rate to cover the invested cost, the project A will be faster to make even and made profit.
+  
+  With consider of cashflow issue, project A is better than project B.
 
 ```{r, echo = FALSE, results = 'asis'}
 ## Set options back to original options
@@ -220,7 +247,7 @@ options(op)
 
 # 3. Conclusion
 
- 
+  Project A will be better than project B for investment.
 
   As mentioned in section [Speech and Blooper], I need to self improve in financial statement analysis section but also products my research [Analyse the Finance and Stocks Price of Bookmakers](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers).
 
@@ -265,6 +292,4 @@ Sys.info()
 
 ## 4.4 References
 
-  1. 
-  2.
-  3.
+  1. NA

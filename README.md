@@ -11,7 +11,7 @@
     - Module 1: *Mini-Project*
   3. Financial Evaluation and Strategy: Investments
     - Module 1: *Investments Toolkit and Portfolio Formation* [Assignment 1 & Discussion: Portfolio Choice When Change Correlations](http://rpubs.com/englianhu/tools-for-facilitating-and-guiding-business-decisions-assignment-1), ([Alternative link](http://englianhu.github.io/2016/07/Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/Module-01-Assignment.html))
-    - Module 1: *Investments Toolkit and Portfolio Formation* [Assignment 2 & Discussion: Calculating More Efficient Portfolios](), (Alternative link)
+    - Module 1: *Investments Toolkit and Portfolio Formation* [Assignment 2 & Discussion: Calculating More Efficient Portfolios](http://rpubs.com/englianhu/194583), ([Alternative link](http://englianhu.github.io/2016/07/Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/Module-02-Assignment.html))
     - Module 2: *Motivating, Explaining, & Implementing the Capital Asset Pricing Model (CAPM)* [Assignment 3 & Discussion: Analyzing & Identifying Three Mystery Securities](), (Alternative link)
     - Module 3: *Testing the CAPM, Multifactor Models, & Market Efficiency* [Assignment 4 & Discussion: Analysis and Recommendation of 50 Balanced Funds, 1995-2014](), (Alternative link)
     - Module 4: *Investment Finance and Corporate Finance: Firm Valuation* [Assignment 5 & Microsoft Example: Valuing a Firm](), (Alternative link)
