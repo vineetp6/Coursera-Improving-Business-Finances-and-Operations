@@ -1,0 +1,270 @@
+---
+title: "[Managerial Accounting: Tools for Facilitating and Guiding Business Decisions](https://www.coursera.org/learn/operations-management/home/welcome) : Module 2 Mini-Project"
+subtitle: "[Improving Business Finances and Operations Specialization](https://www.coursera.org/specializations/business-operations) by University of Illinois at Urbana-Champaign"
+author: "[®γσ, Eng Lian Hu](http://englianhu.wordpress.com) <img src='figure/ShirotoNorimichi2.jpg' width='24'> 白戸則道®"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html:
+    toc: yes
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r load-pkgs, include = FALSE}
+suppressMessages(library('plyr'))
+pkgs <- c('plyr', 'dplyr', 'magrittr', 'knitr', 'stringr', 'tidyr', 'googleVis', 'DT', 'rCharts', 'formattable', 'lubridate', 'rvest')
+suppressMessages(l_ply(pkgs, library, character.only = TRUE))
+rm(pkgs)
+
+## Set the googleVis options first to change the behaviour of plot.gvis, so that only the chart 
+##  component of the HTML file is written into the output file.
+op <- options(gvis.plot.tag = 'chart')
+```
+
+# 1. Introduction
+
+  - Section [1.1 Instructions]
+    + Section [1.1.1 Overview]
+    + Section [1.1.2 How to Use Peer Review]
+    + Section [1.1.3 Assignment Details]
+  - Section [1.2 Review Criteria]
+  - Section [1.3 Reminders]
+
+## 1.1 Instructions
+
+### 1.1.1 Overview
+
+  There are multiple steps to this mini-project. First, you will submit your answers to the questions in Parts 1, 2, and 3 based on the information in the Assignment Details section. Enter your answers directly in the spaces provided in the **My submission** tab. Please answer each question fully and concisely, including the steps of your calculations and/or citations as needed (you may use the [library guidelines to citations](http://www.library.illinois.edu/ugl/howdoi/citations.html) as a guide). Then, you will evaluate the submission of at least four of your peers based on the instructions provided.
+
+### 1.1.2 How to Use Peer Review
+
+1. **Submit your own assignment**. Click the **My submission** tab to begin working on your own assignment. You can save drafts of your work as you go, and you can come back later to continue working on your draft. When you are finished working, click the **Preview** button, verify your identity, and then **Submit** the assignment
+
+2. **Give feedback to your peers**. You are required to give feedback to at least four peers to complete this assignment. You can begin giving feedback to other students as soon as you submit your assignment. Click the **Review peers** tab to get started. Feel free to provide additional reviews beyond the four required!
+
+3. **Read feedback from your peers**. Your peers will also begin reviewing your project as soon as you submit it. You will receive an email notification of each new review. Only you will be able to see the feedback you receive. If you find someone’s review helpful, click the **This review is helpful** button to thank the reviewer.
+
+4. **Browse other projects**. You can browse through all of the submitted assignments, even if you don't plan to review each one. Click the like button if you think someone did a great job on their assignment.
+
+### 1.1.3 Assignment Details
+
+  Cut Here, Inc. is considering a new video rendering system for their in-house studio. Currently, there are two options. Each option involves a significant investment in an asset that has a multi-year useful life. The key benefits of each option are cash savings, which Cut Here equates to cash inflows (i.e., compared to the status quo scenario, in which it incurs significant costs in terms of labor, time, etc.).
+
+  The following cash flow information is available for each option:
+
+```{r data1, echo = FALSE, results = 'asis'}
+dat <- data_frame(Category = c('Immediate Outflow', 'Cash Savings', 'Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6'), `Option A` = c(100000, NA, 10000, 50000, 20000, 70000, 80000, 10000), `Option B` = c(250000, NA, 1000, 2000, 3000, 1000, 20000, 390000)) %>% mutate(`Playback A` = c(-`Option A`[1:2], cumsum(`Option A`[-c(1:2)]) - `Option A`[1]), `Playback B` = c(-`Option B`[1:2], cumsum(`Option B`[-c(1:2)]) - `Option B`[1]))
+
+dat %>% kable(caption = 'Cash Flow of Cut Here Inc. within 6 Years')
+```
+
+*table 1.1.3.1: Cash flow of Cut Here Inc. beyond 6 years.*
+
+**Your Deliverable:**
+
+**Part 1**: Use the following measures to assess the two options from a financial perspective. That is, compute the following measures for each option.
+
+  - Payback
+  - Accounting rate of return
+  - Net present value
+  - Internal rate of return
+
+**Part 2**: Based on what you calculated in Part 1, which option would you recommend to Cut Here management?
+
+**Part 3**: Describe some of the strengths and weaknesses of your analysis (i.e., specific measures, etc.). Also, what other considerations might influence your recommendation?
+
+## 1.2 Review criteria
+
+  You will give a quantitative assessment of all parts of the submission. Then, you will provide qualitative feedback for the submission as a whole.
+
+  The following represents a guide for the quantitative assessment of **Part 1-3**:
+
+  - **0 points: No answer, completely irrelevant answer, inadequate material, and/or evidence does not fit the argument**.
+  - **5 points: Insufficient answer, incomplete, lacks supporting evidence**. An insufficientresponse is incomplete or incorrect. For calculations, the response fails to provide supporting calculations/steps.
+  - **7 points: Passing, meets expectations**. A passing response addresses/answers the question, but some of the answer is not thoroughly explained. For calculations, the supporting calculations/steps are not clear.
+  - **9 points: Well above average, exceeds expectations**. An above average response addresses/answers the entire question and most of the answer is thoroughly explained. For calculations, most of the supporting calculations/steps are clear, but there are some minor deficiencies.
+  - **10 points: Superior performance, excellent**. An excellent response answers the entire question, and thoroughly explains the answer. For calculations, all supporting calculations/steps are clearly presented.
+
+  Recommendations for Fair Peer Review:
+
+  - The score should not be based on whether or not you agree with the answer, rather on whether the answer is complete and well-supported.
+  - Both content and organization are important components of a response. Good writing is confident and clearly focused with relevant details to enrich the content. Good writing also follows instructions, such as word limits, and offers requested information.
+  - A clear and concise answer is preferable to a long response that lacks coherence.
+  - Focus should be on content; try not to unduly penalize responses for spelling or grammar.
+
+## 1.3 Reminders
+
+**Using the Forums**
+
+  Your fellow students are a great resource, and we encourage you to sharpen your ideas against them in the forums. You can post your arguments in the forums and receive feedback before submitting your assignment.
+
+**Honor Code**
+
+  Please remember that you have agreed to the Honor Code, and your submission should be entirely yours. Our definition of plagiarism follows from standard literature: passing off someone else's work as your own, whether from your peers or Wikipedia. If you need to quote material, remember to cite your source, for example: "But, as expressed by Spinoza, all things excellent are as difficult as they are rare (Baruch Spinoza, "Ethica" source: thinkexist.com)."
+
+# 2. Case Study
+
+  - Section 2.1 [Part 1]
+  - Section 2.2 [Part 2]
+  - Section 2.3 [Part 3]
+
+## Part 1
+
+  Cut Here, Inc. is considering a new video rendering system for their in-house studio. Currently, there are two options. Each option involves a significant investment in an asset that has a multi-year useful life. The key benefits of each option are cash savings, which Cut Here equates to cash inflows (i.e., compared to the status quo scenario, in which it incurs significant costs in terms of labor, time, etc.).
+
+  Use the cash flow information provided in the Assignment Details section of the **Instructions** tab.
+
+  Then, use the following measures to assess the two options from a financial perspective. That is, compute the following measures for each option.
+
+  - Payback
+  - Accounting rate of return
+  - Net present value
+  - Internal rate of return
+
+**1 Payback**
+
+```{r data2.1.1, echo = FALSE, results = 'asis'}
+datatable(dat)
+```
+
+*table 2.1.1: Payback cash flow of Cut Here Inc. beyond 6 years.*
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8Ldmh1Qethw" frameborder="0" allowfullscreen></iframe>
+
+  - *Payback A* has turned to be positive return at `r as.character(na.omit(dat[dat$'Playback A' > 0,])[1, 1])`, therefore we using last negative figure Year + `r na.omit(dat[dat$'Playback A' <= 0,])['Playback A'] %>% .[nrow(.), ] %>% abs %>% as.character` ÷ `r na.omit(dat[dat$'Playback A' >= 0, ])['Option A'] %>% .[1, ] %>% abs %>% as.character` = `r paste0(as.character(na.omit(dat[dat$'Playback A' <= 0,])[1] %>% .[nrow(.),]), abs(na.omit(dat[dat$'Playback A' <= 0,])['Playback A'] %>% .[nrow(.),] / na.omit(dat[dat$'Playback A' >= 0, ])['Option A'] %>% .[1, ]) %>% round(2) %>% substr(2, 4))`.
+  - *Payback B* has turned to be positive return at `r as.character(na.omit(dat[dat$'Playback B' > 0,])[1, 1])`, therefore we using last negative figure Year + `r na.omit(dat[dat$'Playback B' <= 0,])['Playback B'] %>% .[nrow(.),] %>% abs %>% as.character` ÷ `r na.omit(dat[dat$'Playback B' >= 0,])['Option B'] %>% .[1,] %>% abs %>% as.character` = `r paste0(as.character(na.omit(dat[dat$'Playback B' <= 0,])[1] %>% .[nrow(.),]), abs(na.omit(dat[dat$'Playback B' <= 0,])['Playback B'] %>% .[nrow(.),] / na.omit(dat[dat$'Playback B' >= 0, ])['Option B'] %>% .[1, ]) %>% round(2) %>% substr(2, 4))`.
+
+**2 Accounting Rate of Return**
+
+```{r data2.1.2, echo = FALSE, results = 'asis'}
+arr <- data.frame(Category = c('Average Net Value', 'Average ARR'), 'Option A' = c(unlist(dat[1, 'Option A']/6), sum(dat[-c(1:2), 'Option A'])/6), 'Option B' = c(unlist(dat[1, 'Option B']/6), sum(dat[-c(1:2), 'Option B'])/6))
+rownames(arr) = NULL
+
+arr <- rbind(arr, data.frame(c(Category = 'Ratio', c(arr[2, 2:3] - arr[1, 2:3]) / dat[1, 2:3]))) %>% tbl_df
+
+arr$Option.A[1] <- round(arr$Option.A[1], 2)
+arr$Option.B[1] <- round(arr$Option.B[1], 2)
+arr$Option.A[3] <- paste0(round(arr$Option.A[3] *100, 2), '%')
+arr$Option.B[3] <- paste0(round(arr$Option.B[3] *100, 2), '%')
+
+dat1b <- data.frame(Category = c('Total Outflow', 'Total Saving'), rbind(dat[1, 2:3], colSums(dat[-c(1:2), 2:3])))
+dat1c <- data.frame(Category = 'Year', Option.A = 6, Option.B = 6)
+dat1b <- rbind(dat1b, dat1c)
+
+arr <- rbind(dat1b, arr)
+rm(dat1b, dat1c)
+
+datatable(arr)
+```
+
+*table 2.1.2: ARR cash flow of Cut Here Inc.*
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OJqPU65kBzI" frameborder="0" allowfullscreen></iframe>
+
+$$\frac{Outflow - \sum_{n = 6}^{i = 1,2,3...}Saving}{Outflow}$$
+
+*equation 2.1.1: Accounting Rate of Return*
+
+  - *ARR* for Option A = `r tail(arr$Option.A, 1)`
+  - *ARR* for Option B = `r tail(arr$Option.B, 1)`
+
+**3 Net present value**
+
+```{r data2.1.2, echo = FALSE, results = 'asis'}
+npv <- dat[1:3] %>% mutate(`NPV A` = round(`Option A` * 1 / 1.16^c(0, 0, seq(1, 6)), 2), `NPV B` = round(`Option B` * 1 / 1.16^c(0, 0, seq(1, 6)), 2))
+
+dat1b <- data.frame(Category = 'Total in 6 Years', t(data.frame(colSums(npv[-c(1:2), -1]))))
+rownames(dat1b) <- NULL
+
+npv <- rbind(data.frame(npv), dat1b)
+
+datatable(npv)
+```
+
+*table 2.1.3: NPV cash flow of Cut Here Inc.*
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kDPmQ6dNxTk" frameborder="0" allowfullscreen></iframe>
+
+  Lets assume that the annual return rate is 16%.
+
+  - *NPV* for Option A = `r tail(npv$NPV.A, 1) - npv$NPV.A[1]`, therefore it is a profitable investment.
+  - *NPV* for Option B = `r tail(npv$NPV.B, 1) - npv$NPV.B[1]`, therefore it is NOT a profitable investment.
+
+**4 Internal rate of return**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/y0eelK0RM0w" frameborder="0" allowfullscreen></iframe>
+
+
+## Part 2
+
+  Based on what you calculated in Part 1, which option would you recommend to Cut Here management?
+
+
+
+## Part 3
+
+  Describe some of the strengths and weaknesses of your analysis (i.e., specific measures, etc.). Also, what other considerations might influence your recommendation?
+
+
+
+```{r, echo = FALSE, results = 'asis'}
+## Set options back to original options
+options(op)
+```
+
+# 3. Conclusion
+
+ 
+
+  As mentioned in section [Speech and Blooper], I need to self improve in financial statement analysis section but also products my research [Analyse the Finance and Stocks Price of Bookmakers](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers).
+
+# 4. Appendices
+
+  - Section [4.1 Documenting File Creation]
+  - Section [4.2 Versions' Log]
+  - Section [4.3 Speech and Blooper]
+  - Section [4.4 References]
+
+## 4.1 Documenting File Creation
+
+  It's useful to record some information about how your file was created.
+  
+  - File creation date: 2016-07-08
+  - File latest updated date: `r Sys.Date()`
+  - `r R.version.string`
+  - R version (short form): `r getRversion()`
+  - [**rmarkdown** package]() version: `r packageVersion('rmarkdown')`
+  - [**tufte** package](https://github.com/rstudio/tufte) version: `r packageVersion('tufte')`
+  - File version: 1.0.0
+  - Author Profile: [®γσ, Eng Lian Hu](https://beta.rstudioconnect.com/englianhu/ryo-eng/)
+  - GitHub: [Source Code](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/tree/master/2%20Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions)
+  - Additional session information:
+
+```{r info, echo = FALSE, results = 'asis'}
+lubridate::now()
+devtools::session_info()$platform
+Sys.info()
+```
+
+## 4.2 Versions' Log
+
+  - *July 08, 2016*: [version: 1.0.0](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/2%20Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/Module-02-Assignment.Rmd)
+
+## 4.3 Speech and Blooper
+
+  I do appreciate that [University of Illinois at Urbana–Champaign](http://illinois.edu/) provides the [Improving Business Finances and Operations](https://www.coursera.org/specializations/business-operations) specialization via [Coursera](http://www.coursera.org). I used to study [Certified Accounting Technician (CAT)](http://www.accaglobal.com/ie/en/student/exam-support-resources/foundation-level-study-resources.html) course at [PAAC](http://www.paac.edu.my/index.php?p=location) more more decade. Now I need to review the finance and accounting course prior to conduct my research [Analyse the Finance and Stocks Price of Bookmakers](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers).
+  There are few books that I need to read for further understanding.
+  - [Managerial Accounting](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/2%20Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/data/Managerial%20Accounting.pdf)
+  - [**Financial Statement** A Step-by-Step Guide to Understanding and Creating Financial Reports *by Thomas R. Ittelson 2009*](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers/blob/master/data/finance.pdf)
+
+## 4.4 References
+
+  1. 
+  2.
+  3.
