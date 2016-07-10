@@ -1,5 +1,5 @@
 ---
-title: "[Managerial Accounting: Tools for Facilitating and Guiding Business Decisions](https://www.coursera.org/learn/operations-management/home/welcome) : Module 1 Mini-Project"
+title: "[Managerial Accounting: Tools for Facilitating and Guiding Business Decisions](https://www.coursera.org/learn/managerial-accounting-tools/home/welcome) : Module 1 Mini-Project"
 subtitle: "[Improving Business Finances and Operations Specialization](https://www.coursera.org/specializations/business-operations) by University of Illinois at Urbana-Champaign"
 author: "[®γσ, Eng Lian Hu](http://englianhu.wordpress.com) <img src='figure/ShirotoNorimichi2.jpg' width='24'> 白戸則道®"
 date: "`r Sys.Date()`"
