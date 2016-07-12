@@ -1,5 +1,5 @@
 ---
-title: "[Financial Evaluation and Strategy: Corporate Finance](https://www.coursera.org/learn/corporate-finance/home/welcome) : Module 1 Mini-Project"
+title: "[Financial Evaluation and Strategy: Corporate Finance](https://www.coursera.org/learn/corporate-finance/home/welcome) : Module 1 "
 subtitle: "[Improving Business Finances and Operations Specialization](https://www.coursera.org/specializations/business-operations) by University of Illinois at Urbana-Champaign"
 author: "[®γσ, Eng Lian Hu](http://englianhu.wordpress.com) <img src='figure/ShirotoNorimichi2.jpg' width='24'> 白戸則道®"
 date: "`r Sys.Date()`"
@@ -18,7 +18,7 @@ link-citations: yes
 
 ```{r load-pkgs, include = FALSE}
 suppressMessages(library('plyr'))
-pkgs <- c('plyr', 'dplyr', 'magrittr', 'knitr', 'stringr', 'tidyr', 'googleVis', 'DT', 'rCharts', 'formattable', 'lubridate', 'rvest')
+pkgs <- c('BBmisc', 'plyr', 'dplyr', 'magrittr', 'knitr', 'readxl', 'stringr', 'tidyr', 'googleVis', 'DT', 'rCharts', 'formattable', 'lubridate', 'xtable', 'stargazer')
 suppressMessages(l_ply(pkgs, library, character.only = TRUE))
 rm(pkgs)
 
@@ -111,7 +111,31 @@ op <- options(gvis.plot.tag = 'chart')
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-h4wHQem5-c" frameborder="0" allowfullscreen></iframe>
 
-  For questions 3-9 you will need data from the [Nike Inc]() and [V.F. Corporation]() spreadsheets.
+  For questions 3-9 you will need data from the [Nike Inc](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/4%20Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/data/NIKE%20Inc%20NYSE%20NKE%20Financials.xls) and [V.F. Corporation](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/4%20Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/data/V%20F%20Corporation%20NYSE%20VFC%20Financials.xls) spreadsheets.
+
+```{r read-data, echo = FALSE, results = 'asis'}
+sht <- c('Key Stats', 'Income Statement', 'Balance Sheet', 'Cash Flow')
+NKE <- suppressAll(llply(sht, function(i) {
+    read_excel(paste0('data/NIKE Inc NYSE NKE Financials.xls'), sheet = i, skip = 3)}))
+VFC <- suppressAll(llply(sht, function(i) {
+    read_excel(paste0('data/V F Corporation NYSE VFC Financials.xls'), sheet = i, skip = 3)}))
+names(NKE) <- names(VFC) <- sht
+rm(sht)
+```
+
+```{r nke, echo = FALSE, results = 'asis'}
+dat1 <- llply(NKE, function(x) formattable(data.frame(llply(x, str_replace_na, '')), title = names(x)))
+llply(dat1, as.htmlwidget)
+```
+
+*table 1.3.1: Financial statement of stock counter NKE.*
+
+```{r vfc, echo = FALSE, results = 'asis'}
+dat2 <- llply(VFC, function(x) formattable(data.frame(llply(x, str_replace_na, '')), title = names(x)))
+llply(dat2, as.htmlwidget)
+```
+
+*table 1.3.2: Financial statement of stock counter VFC.*
 
   The discussion of the assignment solution is provided in Video Lesson 1-11. Do the assignment on your own first, before viewing the assignment discussion video! Please view the assignment discussion video before completing the review of your peers.
 
@@ -127,11 +151,76 @@ op <- options(gvis.plot.tag = 'chart')
 
 # 2. Case Study
 
-  - Section 2.1 [Summary]
-  - Section 2.2 [Part 1]
-  - Section 2.3 [Part 2]
-  - Section 2.4 [Part 3]
-  - Section 2.5 [Part 4]
+  - Section 2.1 [Question 1]
+  - Section 2.2 [Question 2]
+  - Section 2.3 [Question 3]
+  - Section 2.4 [Question 4]
+  - Section 2.5 [Question 5]
+  - Section 2.6 [Question 6]
+  - Section 2.7 [Question 7]
+  - Section 2.8 [Question 8]
+  - Section 2.9 [Question 9]
+
+## 2.1 Question 1
+
+  Explain why maximizing current stockholder wealth is a reasonable objective for the corporation (1 paragraph maximum).
+
+
+
+## 2.2 Question 2
+
+  A company’s board of directors must choose between two alternative compensation packages for top executives. Package 1 includes a fixed salary and an yearly bonus that depends on profits on that year. For example, the CEO gets paid a bonus if profits are higher than a certain target. Package 2 includes a fixed salary, and a certain amount of stock in the company. Which package is likely to be better from the point of view of shareholder value maximization? (1 paragraph maximum).
+
+
+
+## 2.3 Question 3
+
+  Questions 3-9 will ask you to compute, compare, and analyze financial ratios for Nike Inc and V.F. Corporation. The data you need are in the linked spreadsheets.
+
+Here is some information about the companies from Capital IQ :
+
+NIKE, Inc., together with its subsidiaries, designs, develops, markets, and sells athletic footwear, apparel, equipment, and accessories for men, women, and kids worldwide. NIKE, Inc. was founded in 1964 and is headquartered in Beaverton, Oregon.
+
+V.F. Corporation was founded in 1899 and is headquartered in Greensboro, North Carolina. V.F. Corporation designs, manufactures, markets, and distributes branded lifestyle apparel, footwear, and accessories in the United States and Europe.
+
+Compute the main liquidity ratios for both Nike and V.F.Corporation (current ratios, quick ratios, and cash ratios). Do this for the last 3 years available. For Nike they will be May 2015, May 2014 and May 2013. For V.F.Corporation they will be July 2015 (latest-twelve months), January 2015, and December 2013.
+BI Link
+
+
+
+## 2.4 Question 4
+
+  Compute the main balance sheet leverage ratios for both Nike and V.F.Corporation (Debt/(Debt + Equity), and Liabilities/Assets). You only need to do this using the most recently available data so as to reflect the current valuation of the companies.
+
+
+
+## 2.5 Question 5
+
+  Compute the main profitability ratios for both Nike and V.F.Corporation (Asset turnover, profit margin, and ROA). Do this for the last 3 years available.
+
+
+
+## 2.6 Question 6
+
+  Compute the cash profitability ratio for both Nike and V.F.Corporation. Do this for the last 3 years available.
+
+
+
+## 2.7 Question 7
+
+  Analyze the cash flow statement of both Nike and V.F.Corporation in the last 3 years. Are the companies investing to grow the business? Are they raising cash from investors or are they returning cash to investors?
+
+
+
+## 2.8 Question 8
+
+  Compute the main valuation ratios for Nike and V.F.Corporation (Value/OPAT and Market/Book). You only need to do this using the most recently available data so as to reflect the current valuation of the companies.
+
+
+
+## 2.9 Question 9
+
+  Discuss the implications of your results. How do the two companies compare to each other? What have you learned from the comparison of financial ratios for these two companies? (2 paragraphs maximum)
 
 
 
@@ -144,8 +233,6 @@ options(op)
 # 3. Conclusion
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/S4plXIPi82c" frameborder="0" allowfullscreen></iframe>
-
-  I completed the assignment based on my limited knowledge. Due to the quarter financial report of *GVC* doen't provides a breakdown profit and loss (P&L) of every single division simlir with *figure 2.2.1*, we unable to judge and make a brilliant and efficient business decision.
 
   As mentioned in section [Speech and Blooper], I need to self improve in financial statement analysis section but also products my research [Analyse the Finance and Stocks Price of Bookmakers](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers).
 
@@ -190,6 +277,6 @@ Sys.info()
 
 ## 4.4 References
 
-  1. 
+  1. [**Corporate Finance (3rd Edition)** *by Ivo Welch 2014*](http://book.ivo-welch.info/ed3/)
   2. 
   3. 
