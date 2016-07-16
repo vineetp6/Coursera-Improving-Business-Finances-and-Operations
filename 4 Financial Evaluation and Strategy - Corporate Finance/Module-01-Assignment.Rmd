@@ -683,12 +683,14 @@ Sys.info()
 
 ## 4.2 Versions' Log
 
-  - *July 10, 2016*: [version: 1.0.0](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/tree/master/4%20Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/Module-01-Assignment.Rmd)
+  - *July 10, 2016*: [version: 1.0.0](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/4%20Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/Module-01-Assignment.Rmd)
 
 ## 4.3 Speech and Blooper
 
   I do appreciate that [University of Illinois at Urbana–Champaign](http://illinois.edu/) provides the [Improving Business Finances and Operations](https://www.coursera.org/specializations/business-operations) specialization via [Coursera](http://www.coursera.org). I used to study [Certified Accounting Technician (CAT)](http://www.accaglobal.com/ie/en/student/exam-support-resources/foundation-level-study-resources.html) course at [PAAC](http://www.paac.edu.my/index.php?p=location) more more decade. Now I need to review the finance and accounting course prior to conduct my research [Analyse the Finance and Stocks Price of Bookmakers](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers).
+  
   There are few books stated in [3. Conclusion] and below references that I need to read for further understanding.
+  
   - [Managerial Accounting](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/2%20Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/data/Managerial%20Accounting.pdf)
   - [**Financial Statement** A Step-by-Step Guide to Understanding and Creating Financial Reports *by Thomas R. Ittelson 2009*](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers/blob/master/data/finance.pdf)
   - [**Corporate Finance (3rd Edition)** *by Ivo Welch 2014*](http://book.ivo-welch.info/ed3/)
