@@ -1,5 +1,5 @@
 ---
-title: "[Managerial Accounting: Tools for Facilitating and Guiding Business Decisions](https://www.coursera.org/learn/managerial-accounting-tools/home/welcome) : Module 2 Mini-Project"
+title: "[**Managerial Accounting: Tools for Facilitating and Guiding Business Decisions**](https://www.coursera.org/learn/managerial-accounting-tools/home/welcome) : *Module 2 Mini-Project*"
 subtitle: "[Improving Business Finances and Operations Specialization](https://www.coursera.org/specializations/business-operations) by University of Illinois at Urbana-Champaign"
 author: "[®γσ, Eng Lian Hu](http://englianhu.wordpress.com) <img src='figure/ShirotoNorimichi2.jpg' width='24'> 白戸則道®"
 date: "`r Sys.Date()`"
@@ -18,7 +18,7 @@ link-citations: yes
 
 ```{r load-pkgs, include = FALSE}
 suppressMessages(library('plyr'))
-pkgs <- c('plyr', 'dplyr', 'magrittr', 'knitr', 'stringr', 'tidyr', 'googleVis', 'DT', 'rCharts', 'formattable', 'lubridate', 'rvest')
+pkgs <- c('plyr', 'dplyr', 'magrittr', 'knitr', 'stringr', 'tidyr', 'googleVis', 'DT', 'rCharts', 'formattable', 'lubridate', 'rvest', 'FinCal')
 suppressMessages(l_ply(pkgs, library, character.only = TRUE))
 rm(pkgs)
 
@@ -114,7 +114,7 @@ datatable(dat)
   - Section 2.2 [Part 2]
   - Section 2.3 [Part 3]
 
-## Part 1
+## 2.1 Part 1
 
   Cut Here, Inc. is considering a new video rendering system for their in-house studio. Currently, there are two options. Each option involves a significant investment in an asset that has a multi-year useful life. The key benefits of each option are cash savings, which Cut Here equates to cash inflows (i.e., compared to the status quo scenario, in which it incurs significant costs in terms of labor, time, etc.).
 
@@ -127,7 +127,7 @@ datatable(dat)
   - Net present value
   - Internal rate of return
 
-**1 Payback**
+### 2.1.1 Payback
 
 ```{r data2.1.1, echo = FALSE, results = 'asis'}
 datatable(dat)
@@ -140,7 +140,7 @@ datatable(dat)
   - *Payback A* has turned to be positive return at `r as.character(na.omit(dat[dat$'Playback A' > 0,])[1, 1])`, therefore we using last negative figure Year + `r na.omit(dat[dat$'Playback A' <= 0,])['Playback A'] %>% .[nrow(.), ] %>% abs %>% as.character` ÷ `r na.omit(dat[dat$'Playback A' >= 0, ])['Option A'] %>% .[1, ] %>% abs %>% as.character` = `r paste0(as.character(na.omit(dat[dat$'Playback A' <= 0,])[1] %>% .[nrow(.),]), abs(na.omit(dat[dat$'Playback A' <= 0,])['Playback A'] %>% .[nrow(.),] / na.omit(dat[dat$'Playback A' >= 0, ])['Option A'] %>% .[1, ]) %>% round(2) %>% substr(2, 4))`.
   - *Payback B* has turned to be positive return at `r as.character(na.omit(dat[dat$'Playback B' > 0,])[1, 1])`, therefore we using last negative figure Year + `r na.omit(dat[dat$'Playback B' <= 0,])['Playback B'] %>% .[nrow(.),] %>% abs %>% as.character` ÷ `r na.omit(dat[dat$'Playback B' >= 0,])['Option B'] %>% .[1,] %>% abs %>% as.character` = `r paste0(as.character(na.omit(dat[dat$'Playback B' <= 0,])[1] %>% .[nrow(.),]), abs(na.omit(dat[dat$'Playback B' <= 0,])['Playback B'] %>% .[nrow(.),] / na.omit(dat[dat$'Playback B' >= 0, ])['Option B'] %>% .[1, ]) %>% round(2) %>% substr(2, 4))`.
 
-**2 Accounting Rate of Return**
+### 2.1.2 Accounting Rate of Return
 
 ```{r data2.1.2, echo = FALSE, results = 'asis'}
 arr <- data.frame(Category = c('Average Net Value', 'Average ARR'), 'Option A' = c(unlist(dat[1, 'Option A']/6), sum(dat[-c(1:2), 'Option A'])/6), 'Option B' = c(unlist(dat[1, 'Option B']/6), sum(dat[-c(1:2), 'Option B'])/6))
@@ -174,12 +174,21 @@ $$\frac{Outflow - \sum_{n = 6}^{i = 1,2,3...}Saving}{Outflow}$$
   - *ARR* for Option A = `r tail(arr$Option.A, 1)`
   - *ARR* for Option B = `r tail(arr$Option.B, 1)`
 
-**3 Net present value**
+### 2.1.3 Net present value
 
 ```{r data2.1.3, echo = FALSE, results = 'asis'}
-npv <- dat[1:3] %>% mutate(`NPV A` = round(`Option A` * 1 / 1.16^c(0, 0, seq(1, 6)), 2), `NPV B` = round(`Option B` * 1 / 1.16^c(0, 0, seq(1, 6)), 2))
+npv <- dat[1:3] %>% mutate(NPV.A.13 = round(`Option A` / 1.13^c(0, 0, seq(1, 6)), 2), 
+                           NPV.B.09 = round(`Option B` / 1.09^c(0, 0, seq(1, 6)), 2), 
+                           NPV.A.18 = round(`Option A` / 1.18^c(0, 0, seq(1, 6)), 2), 
+                           NPV.B.11 = round(`Option B` / 1.11^c(0, 0, seq(1, 6)), 2), 
+                           NPV.A.25 = round(`Option A` / 1.25^c(0, 0, seq(1, 6)), 2), 
+                           NPV.B.13 = round(`Option B` / 1.13^c(0, 0, seq(1, 6)), 2), 
+                           NPV.A.28 = round(`Option A` / 1.28^c(0, 0, seq(1, 6)), 2), 
+                           NPV.B.15 = round(`Option B` / 1.15^c(0, 0, seq(1, 6)), 2), 
+                           NPV.A.16 = round(`Option A` / 1.16^c(0, 0, seq(1, 6)), 2), 
+                           NPV.B.16 = round(`Option B` / 1.16^c(0, 0, seq(1, 6)), 2))
 
-dat1b <- data.frame(Category = 'Total in 6 Years', t(data.frame(colSums(npv[-c(1:2), -1]))))
+dat1b <- data.frame(Category = c('Total in 6 Years', 'Difference'), rbind(data.frame(t(data.frame(colSums(npv[-c(1:2), -1])))), t(data.frame(colSums(npv[-c(1:2), -1]))) - data.frame(npv[1, -1])))
 rownames(dat1b) <- NULL
 
 npv <- rbind(data.frame(npv), dat1b)
@@ -197,12 +206,12 @@ datatable(npv)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/kDPmQ6dNxTk" frameborder="0" allowfullscreen></iframe>
 
-  Lets assume that the annual return rate is 16%.
+  From *table 2.1.3*, we know that the annual return rate for 16% as below. You can also know 13% (`NPV.A.13` and `NPV.B.13`) from the table.
 
   - *NPV* for Option A = `r as.character(tail(npv$NPV.A, 1))` - `r as.character(npv$NPV.A[1])` = `r as.character(tail(npv$NPV.A, 1) - npv$NPV.A[1])`, therefore it is a profitable investment.
   - *NPV* for Option B = `r as.character(tail(npv$NPV.B, 1))` - `r as.character(npv$NPV.B[1])` = `r as.character(tail(npv$NPV.B, 1) - npv$NPV.B[1])`, therefore it is NOT a profitable investment.
 
-**4 Internal Rate of Return**
+### 2.1.4 Internal Rate of Return
 
   To calculate IRR using the formula, one would set NPV equal to zero and solve for the discount rate r, which is here the IRR. Because of the nature of the formula, however, IRR cannot be calculated analytically, and must instead be calculated either through trial-and-error or using software programmed to calculate IRR.
 
@@ -210,21 +219,28 @@ datatable(npv)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/y0eelK0RM0w" frameborder="0" allowfullscreen></iframe>
 
-<s>
+**What is the 'IRR Rule'**?
+  
+  A measure for evaluating whether to proceed with a project or investment. The IRR rule states that if the internal rate of return (IRR) on a project or investment is greater than the minimum required rate of return – the cost of capital – then the decision would generally be to go ahead with it. Conversely, if the IRR on a project or investment is lower than the cost of capital, then the best course of action may be to reject it.
 
-  - *IRR* for Option A = 
-  - *IRR* for Option B = 
+**BREAKING DOWN 'IRR Rule'**
+  The higher the IRR on a project and the greater the amount by which it exceeds the cost of capital, the higher the net cash flows to the investor. In general terms, a company that has to choose one, among several similar projects with equivalent degrees of risk, may go with the one that provides the highest IRR.
 
-</s>
+  The IRR rule is one among a number of rules used to evaluate projects in capital budgeting. However, it may not always be rigidly enforced. For example, a company may prefer a project with a lower IRR over one with a higher IRR because the former provides other intangible benefits such as being part of a bigger strategic plan or impeding competition. A company may also prefer a larger project with a lower IRR to a much smaller project with a higher IRR, because of the higher cash flows generated by the larger project.
 
-## Part 2
+Read more: [IRR Rule Definition | Investopedia](http://www.investopedia.com/terms/i/internal-rate-of-return-rule.asp#ixzz4F3PzfePC)]
+
+  - *IRR* for Option A = 28% (We can know the from the row **balance** inside *table 2.1.3* is nearest to 0 compare to other rates)^[You can apply FinCal::irr() in package [FinCal](https://cran.r-project.org/web/packages/FinCal/index.html) to calculate the IRR.] 
+  - *IRR* for Option B = 9% (We can know the from the row **balance** inside *table 2.1.3* is nearest to 0 compare to other rates)^[You can apply FinCal::irr() in package [FinCal](https://cran.r-project.org/web/packages/FinCal/index.html) to calculate the IRR.]
+
+## 2.2 Part 2
 
   Based on what you calculated in Part 1, which option would you recommend to Cut Here management?
 
   - *Payback* for project A is 3.29 Years and 5.57 years for project B. Means that the cost invested on project A will be even on 3.29 years and begin make money after that.
   - *Accounting Rate of Return* for project A is 23.33% and project B is 11.13%. Since the average return for project A across 6 years around 23.33% and it is better than project B.
   - *NPV* for project A is favor and profitable investment, but for project B is not a profitable investment since a big portion of return will be cash in in the 6th years.
-  - <s> *IRR* for project A... project B...</s>
+  - *IRR* for project A is higher than project B, therefore it is more preferable to investors. The higher the IRR on a project and the greater the amount by which it exceeds the cost of capital, the higher the net cash flows to the investor.^[You can refer to [2.1.4 Internal Rate of Return] for more details.]
   
   A health cashflow need to be smoothly and project A can make it, while the project B will faced cash flow problem and might looking for loan from bank before 6th year (if that is an opprtunity cost for company which is the company has no extra cash).
   
@@ -232,13 +248,61 @@ datatable(npv)
   
   As a businessman, project A will be faster to make profit, and will not face a tigh cashflow problem compare to project B, and it is worth to invest unless the businessman has sufficient fund for cashflow before year 6, then it will be different story.
 
-## Part 3
+## 2.3 Part 3
 
-  Describe some of the strengths and weaknesses of your analysis (i.e., specific measures, etc.). Also, what other considerations might influence your recommendation?
+### 2.3.1 Payback Time
 
-  I am not understanind *IRR* even though read some references. I've just based on the cashflow and return rate to cover the invested cost, the project A will be faster to make even and made profit.
+  - **Advantages**
+    + Payback time is measuring about the time to recover the cost invested on a project prior to make profit.
+    + Risk indicator, the longer time taken to get the money back from investment, the higher risk of uncertainty.
+  - **Disadvantages**
+    + Doesn't measure the time value of money.
+    + Doesn't shows the cash flow.
+    + Doesn't shows the profitability rate.
+
+### 2.3.2 Accounting Rate of Return
+
+  - **Advantages**
+    + Accounting based report to calculate the rate of return
+  - **Disadvantages**
+    + Normally apply quarterly or annually.
+    + Cash basis might not accurate.
+
+### 2.3.3 Net Present Value
+
+  - **Advantages**
+    + Time value of money take into account. It is useful especially for long-term project.
+    + Cash basis.
+    + Allow to compare the future cash flow onto today's value.
+    + NPV tell us how much will payback accross the years after counting the time value of money.
+  - **Disadvantages**
+    + Normally annum rate basis might not accurate as daily basis.
+    + Assumption can lead to different results.
+    + Inflation rate might need to consider.
+    + Uncertainty.
+
+### 2.3.4 Internal Rate of Return
+
+  - **Advantages**
+    + Measure if the investment is worth or not before take action.
+    + Time value of money take into account. It is useful especially for long-term project.
+  - **Disadvantages**
+    + Uncertainty.
+    + Inflation rate might need to consider.
+
+### 2.3.5 Other Factors
+
+  With merely consider of cashflow issue, invest in project A is better than project B. However it is depends on the size of invested project as well.
   
-  With consider of cashflow issue, project A is better than project B.
+  Secondly, Kodak and FujiFilm, Nokia and Siemens are samples in their industry which was dropped in business revenue after launch of Apple iPhone with multiple functions not only phone calls but also includes digital camera, photo, video, online and also apps. The decision making, and research and development need to be considered as well.
+  
+  Thirdly, the turnover of staffs might be another factor. Since the training cost for replace existing skilled staffs might be a sunk cost paid on the resigned/sacked employees. Jack Welch is a management guru who always emphasize on quality. Research and development is the core of business of GE to keep as one of leading company in the World.
+
+![Jack Welch](figure/jack-welch.jpg)
+
+![Jack Welch Quote](figure/jack-welch-quotes.jpg)
+
+  Fourthly, the risk of political barriers and social, environment etc. are other risks that we need to consider.
 
 ```{r, echo = FALSE, results = 'asis'}
 ## Set options back to original options
@@ -247,7 +311,7 @@ options(op)
 
 # 3. Conclusion
 
-  Project A will be better than project B for investment.
+  [2.3 Part 3] has concludes the assignment. However there has a lot of factors we need to take into consideration but not merely on accounting figures.
 
   As mentioned in section [Speech and Blooper], I need to self improve in financial statement analysis section but also products my research [Analyse the Finance and Stocks Price of Bookmakers](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers).
 
