@@ -166,6 +166,7 @@ op <- options(gvis.plot.tag = 'chart')
   - Receivable debt increase the sales for company.
   - For example, a sportsbook hedge fund invest (place bets) on a credit market company,(let say Maxbet or Crown etc.) the return from the staking on the credit market can increase the profit. (Normally cash market company set a low staking limit for customers compare to credit market)
   - It consider as short-term investment, let say placed GBP100,000 on multiple soccer matches with average odds price 1.25, the return of GBP120,000 is a profitable investment.
+  - **It might consider as an investment for trust, because the credit line might expend the future sales based on the credence.**
 
 ## 2.3 Question 3
 
