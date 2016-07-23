@@ -18,7 +18,7 @@
 
   4. Financial Evaluation and Strategy: Corporate Finance
     - Module 1: *The Objective of the Corporation and Analysis of Financial Ratios* [Assignment](http://rpubs.com/englianhu/financial-evaluation-and-strategy-corporate-finance-assignment-01), ([Alternative link](http://englianhu.github.io/2016/07/Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/Module-01-Assignment.html))
-    - Module 2: *Financial Planning*
+    - Module 2: *Financial Planning* [Assignment](http://rpubs.com/englianhu/198073), ([Alternative link](http://englianhu.github.io/2016/07/Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/Module-02-Assignment.html))
     - Module 3: *Making Investment Decisions*
     - Module 4: *Mergers and Acquisitions, Risk, and Performance Evaluation*
     
