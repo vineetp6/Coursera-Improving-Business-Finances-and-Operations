@@ -55,14 +55,14 @@ Browse other projects. You can browse through all of the submitted assignments, 
 
 ### 1.1.3 Assignment Details
 
-#### Part 1: Cost Variances
+#### 1.1.3.1 Part 1: Cost Variances
 
   Flatland, Inc. produces small machine parts for industrial use in a single plant. The plant manager recently received the following performance report for his plant for the most recent month.
 
-```{r data-1, echo = FALSE, results = 'asis'}
-dat1 <- data_frame(Category = c('Units', 'Sales', 'Less variables costs:', 'Direct materials', 'Direct labor', 'Manufacturing overhead', 'Total variable costs', 'Contribution margin', 'Fixed manufacturing overhead', 'Operating profit'), Actual = c(5500, 132000, '', 22275, 20805, 15860, -58940, 73060, -26500, 46560), Budgeted = c(6000, 120000, '', 23400, 21000, 16500, -60900, 59100, -25000, 34100))
+```{r data-1-1-3-1, echo = FALSE, results = 'asis'}
+dat1.1 <- data_frame(Category = c('Units', 'Sales', 'Less variables costs:', 'Direct materials', 'Direct labor', 'Manufacturing overhead', 'Total variable costs', 'Contribution margin', 'Fixed manufacturing overhead', 'Operating profit'), Actual = c(5500, 132000, '', 22275, 20805, 15860, -58940, 73060, -26500, 46560), Budgeted = c(6000, 120000, '', 23400, 21000, 16500, -60900, 59100, -25000, 34100))
 
-dat1 %>% formattable %>% as.htmlwidget
+dat1.1 %>% formattable %>% as.htmlwidget
 ```
 
 *table 1.1.3.1: financial statememt of Flatland Inc.*
@@ -91,14 +91,14 @@ Additional information:
 
 3. Provide at least two potential explanations for each of the variances (i.e., six) that you calculate. If you were to investigate these variances, who would you speak to in order to collect information relevant to your investigation?
 
-#### Part 2: Revenue Variances
+#### 1.1.3.2 Part 2: Revenue Variances
 
   The XTRA Appliance Manufacturing Corporation manufactures two models of vacuum cleaners, the Standard and the Super. The following information was gathered about the two products:
 
-```{r data-2, echo = FALSE, results = 'asis'}
-dat2 <- data_frame(Category = c('Budgeted sales in units', 'Budgeted selling price (unit)', 'Budgeted CM per unit', 'Actual sales in units', 'Actual selling price (units)'), Standard = c(3200, 300, 210, 3500, 325), Super = c(800, 850, 550, 1500, 840))
+```{r data-1-1-3-2, echo = FALSE, results = 'asis'}
+dat1.2 <- data_frame(Category = c('Budgeted sales in units', 'Budgeted selling price (unit)', 'Budgeted CM per unit', 'Actual sales in units', 'Actual selling price (units)'), Standard = c(3200, 300, 210, 3500, 325), Super = c(800, 850, 550, 1500, 840))
 
-dat2 %>% formattable %>% as.htmlwidget
+dat1.2 %>% formattable %>% as.htmlwidget
 ```
 
 *table 1.1.3.2: products' budget statememt of XTRA Appliance Manufacturing Corporation.*
@@ -145,23 +145,64 @@ Both content and organization are important components of a response. Good writi
 
 ## 2.1 Part 1: Cost Variances
 
-  Using the information provided in the Assignment Details section of the **Instructions** tab, respond to the following:
+**Question**:
 
-1. For both direct material and direct labor costs, calculate the spending, efficiency, and activity variances. Please provide supporting calculations, label your variances by name, and designate them as favorable or unfavorable. Note: If the given information is insufficient for answering any part of the above question, please denote that clearly, and identify the piece of information you are missing.
+>  Using the information provided in the Assignment Details section of the **Instructions** tab, respond to the following:
 
-2. Provide a brief statement demonstrating your knowledge of the difference between a favorable and an unfavorable variance.
+> 1. For both direct material and direct labor costs, calculate the spending, efficiency, and activity variances. Please provide supporting calculations, label your variances by name, and designate them as favorable or unfavorable. Note: If the given information is insufficient for answering any part of the above question, please denote that clearly, and identify the piece of information you are missing.
 
-3. Provide at least two potential explanations for each of the variances (i.e., six) that you calculate. If you were to investigate these variances, who would you speak to in order to collect information relevant to your investigation?
+> 2. Provide a brief statement demonstrating your knowledge of the difference between a favorable and an unfavorable variance.
 
+> 3. Provide at least two potential explanations for each of the variances (i.e., six) that you calculate. If you were to investigate these variances, who would you speak to in order to collect information relevant to your investigation?
 
+**Answer**:
+
+```{r data-2-1-1, echo = FALSE, results = 'asis'}
+dat2.1 <- data_frame(
+  Category = c('Units', 'Sales', 'Less variables costs:', 'Direct materials', 'Direct labor', 'Manufacturing overhead', 'Total variable costs', 'Contribution margin', 'Fixed manufacturing overhead', 'Operating profit'), 
+  Actual = c(5500, 132000, '', 22275, 20805, 15860, -58940, 73060, -26500, 46560), 
+  
+  Standard = c('$2,850 / (1/2 hour per unit) = 5,700 units', '', '', '', '', '', '', '', '', ''), 
+  
+  Budgeted = c(6000, 120000, '', 23400, 21000, 16500, -60900, 59100, -25000, 34100))
+
+dat2.1 %>% formattable %>% as.htmlwidget
+```
+
+*table 2.2.1: financial statement of Flatland Inc.*
+
+```{r data-2-1-2, echo = FALSE, results = 'asis'}
+dat2.2 <- data_frame(
+  Category = c('Units', 'Sales', 'Less variables costs:', 'Direct materials', 'Direct labor', 'Manufacturing overhead', 'Total variable costs', 'Contribution margin', 'Fixed manufacturing overhead', 'Operating profit'), 
+  
+  Actual = c('8,250 kg / 5,500 Units = 1.5 kg', '$132,000 / 5,500 units = $24 per unit', '', '$22,275 / 5,500 units = $4.05 per unit', '$20,805 / 5,500 units = $3.782727 per unit', '$15,860 / 5,500 units = $2.883636 per unit', '-$58,940 / 5,500 units = $10.71636 per unit == ($4.05 + $3.782727 + $2.883636 = $10.71636 per unit)', '$73,060 / 5,500 units = $13.28364 per unit == ($24 - )', -26500, 46560),
+  
+  Standard = c('$2,850 / (1/2 hour per unit) = 5,700 Units', '$132,000 / 5,700 units = $23.15789 per unit', '', '$22,275 / 5,700 units = $3.907895 per unit', '$20,805 / 5,700 units = $3.65 per hour', '$15,860 / 5,700 units = $2.782456 per unit', '-$58,940 / 5,700 units = -$10.34035 per unit == (-$3.907895 + $3.65 + $2.782456 = $10.34035 per unit)', '$73,060 / 5,700 units = $12.81754 per unit == ($23.15789 - $10.34035 = $12.81754 per unit)', '$26,500 / 5,700 units = $4.649123 per unit', '$46,560 / 5,700 units = $8.168421 per unit == ($12.81754 - $4.649123 = $8.168417 per unit)'), 
+  
+  Budgeted = c('9,000 kg / 6,000 units = 1.5 kg', '$120,000 / 6,000 units = $20 per unit', '', '$23,400 / 6,000 units = $3.9 per unit', '$21,000 / 6,000 units = $3.5 per unit', '$16,500 / 6,000 units = $2.75 per unit', '-$60,900 / 6,000 units = $10.15 per unit == ($3.9 + $3.5 + $2.75 = $10.15 per unit)', '$59,100 / 6,000 units = $9.85 per unit === ($20 - $10.15 = $9.85 per unit)', '-$25,000 / 6,000 units = $4.166667 per unit', '$34,100 / 6,000 units = $5.683333 per unit == ($9.85 - $4.166667 = $5.683333 per unit)'))
+
+dat2.2 %>% formattable %>% as.htmlwidget
+```
+
+*table 2.2.2: per unit basis statement of Flatland Inc.*
+
+  By refer to [1.1.3.1 Part 1: Cost Variances], we calculate below answer:
+
+  - **Actual Unit Produced** : 8250 kg ÷ 1.5 kg = `r 8250 / 1.5` units
+  - **Direct Labour** : 
+  - 
 
 ## 2.2 Part 2: Revenue Variances
 
-  Using the information provided in the Assignment Details section of the Instructions tab, respond to the following:
+**Question**:
 
-1. Calculate the revenue variances (sales price, sales mix, and sales activity) for both the Standard and Super models. Please provide supporting calculations, label your variances by name, and designate them as favorable or unfavorable. Note: If the given information is insufficient for answering any part of the above question, please denote that clearly, and identify the piece of information you are missing.
+>  Using the information provided in the Assignment Details section of the Instructions tab, respond to the following:
 
-2. Provide at least two potential explanations for each of the variances (i.e., six) that you calculate. If you were to investigate these variances, who would you speak to in order to collect information relevant to your investigation?
+> 1. Calculate the revenue variances (sales price, sales mix, and sales activity) for both the Standard and Super models. Please provide supporting calculations, label your variances by name, and designate them as favorable or unfavorable. Note: If the given information is insufficient for answering any part of the above question, please denote that clearly, and identify the piece of information you are missing.
+
+> 2. Provide at least two potential explanations for each of the variances (i.e., six) that you calculate. If you were to investigate these variances, who would you speak to in order to collect information relevant to your investigation?
+
+**Answer**:
 
 
 
