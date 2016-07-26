@@ -59,9 +59,9 @@ op <- options(gvis.plot.tag = 'chart')
   The following cash flow information is available for each option:
 
 ```{r data1, echo = FALSE, results = 'asis'}
-dat <- data_frame(Category = c('Immediate Outflow', 'Cash Savings', 'Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6'), `Option A` = c(100000, NA, 10000, 50000, 20000, 70000, 80000, 10000), `Option B` = c(250000, NA, 1000, 2000, 3000, 1000, 20000, 390000)) %>% mutate(`Playback A` = c(-`Option A`[1:2], cumsum(`Option A`[-c(1:2)]) - `Option A`[1]), `Playback B` = c(-`Option B`[1:2], cumsum(`Option B`[-c(1:2)]) - `Option B`[1]))
+dat <- data_frame(Category = c('Immediate Outflow', 'Cash Savings', 'Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5', 'Year 6'), `Option A` = c(100000, NA, 10000, 50000, 20000, 70000, 80000, 10000), `Option B` = c(250000, NA, 1000, 2000, 3000, 1000, 20000, 390000)) %>% mutate(`Payback A` = c(-`Option A`[1:2], cumsum(`Option A`[-c(1:2)]) - `Option A`[1]), `Payback B` = c(-`Option B`[1:2], cumsum(`Option B`[-c(1:2)]) - `Option B`[1]))
 
-datatable(dat)
+dat[1:3] %>% formattable %>% as.htmlwidget
 ```
 
 *table 1.1.3.1: Cash flow of Cut Here Inc. beyond 6 years.*
@@ -110,40 +110,54 @@ datatable(dat)
 
 # 2. Case Study
 
-  - Section 2.1 [Part 1]
-  - Section 2.2 [Part 2]
-  - Section 2.3 [Part 3]
+  - Section [2.1 Part 1]
+  - Section [2.2 Part 2]
+  - Section [2.3 Part 3]
 
 ## 2.1 Part 1
 
-  Cut Here, Inc. is considering a new video rendering system for their in-house studio. Currently, there are two options. Each option involves a significant investment in an asset that has a multi-year useful life. The key benefits of each option are cash savings, which Cut Here equates to cash inflows (i.e., compared to the status quo scenario, in which it incurs significant costs in terms of labor, time, etc.).
+>  Cut Here, Inc. is considering a new video rendering system for their in-house studio. Currently, there are two options. Each option involves a significant investment in an asset that has a multi-year useful life. The key benefits of each option are cash savings, which Cut Here equates to cash inflows (i.e., compared to the status quo scenario, in which it incurs significant costs in terms of labor, time, etc.).
 
-  Use the cash flow information provided in the Assignment Details section of the **Instructions** tab.
+>  Use the cash flow information provided in the Assignment Details section of the **Instructions** tab.
 
-  Then, use the following measures to assess the two options from a financial perspective. That is, compute the following measures for each option.
+>  Then, use the following measures to assess the two options from a financial perspective. That is, compute the following measures for each option.
 
-  - Payback
-  - Accounting rate of return
-  - Net present value
-  - Internal rate of return
+>  - Payback
+>  - Accounting rate of return
+>  - Net present value
+>  - Internal rate of return
 
 ### 2.1.1 Payback
 
 ```{r data2.1.1, echo = FALSE, results = 'asis'}
-datatable(dat)
+dat <- rbind(data.frame(dat), data.frame(Category = 'Total (in 6 Year)', t(colSums(dat[-c(1:2), -1]))))
+
+dat %>% formattable(
+    list(
+        `Option.A` = color_tile('white', 'darkgoldenrod'), 
+        `Option.B` = color_tile('white', 'darkgoldenrod'), 
+        `Payback.A` = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+        `Payback.B` = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x)))
+    )
+) %>% as.htmlwidget
 ```
 
 *table 2.1.1: Payback cash flow of Cut Here Inc. beyond 6 years.*
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8Ldmh1Qethw" frameborder="0" allowfullscreen></iframe>
 
-  - *Payback A* has turned to be positive return at `r as.character(na.omit(dat[dat$'Playback A' > 0,])[1, 1])`, therefore we using last negative figure Year + `r na.omit(dat[dat$'Playback A' <= 0,])['Playback A'] %>% .[nrow(.), ] %>% abs %>% as.character` ÷ `r na.omit(dat[dat$'Playback A' >= 0, ])['Option A'] %>% .[1, ] %>% abs %>% as.character` = `r paste0(as.character(na.omit(dat[dat$'Playback A' <= 0,])[1] %>% .[nrow(.),]), abs(na.omit(dat[dat$'Playback A' <= 0,])['Playback A'] %>% .[nrow(.),] / na.omit(dat[dat$'Playback A' >= 0, ])['Option A'] %>% .[1, ]) %>% round(2) %>% substr(2, 4))`.
-  - *Payback B* has turned to be positive return at `r as.character(na.omit(dat[dat$'Playback B' > 0,])[1, 1])`, therefore we using last negative figure Year + `r na.omit(dat[dat$'Playback B' <= 0,])['Playback B'] %>% .[nrow(.),] %>% abs %>% as.character` ÷ `r na.omit(dat[dat$'Playback B' >= 0,])['Option B'] %>% .[1,] %>% abs %>% as.character` = `r paste0(as.character(na.omit(dat[dat$'Playback B' <= 0,])[1] %>% .[nrow(.),]), abs(na.omit(dat[dat$'Playback B' <= 0,])['Playback B'] %>% .[nrow(.),] / na.omit(dat[dat$'Playback B' >= 0, ])['Option B'] %>% .[1, ]) %>% round(2) %>% substr(2, 4))`.
+  - **Payback A** has turned to be positive return at `r dat %>% .[-nrow(.),] %>% filter(Payback.A >= 0) %>% .[1, 1]`, therefore we using last negative figure `r dat %>% .[-nrow(.),] %>% filter(Payback.A < 0) %>% .[nrow(.), 1]` + `r dat %>% .[-nrow(.),] %>% filter(Payback.A < 0) %>% .[nrow(.), 4] %>% abs %>% as.character` ÷ `r dat %>% .[-nrow(.),] %>% filter(Payback.A > 0) %>% .[1, 2] %>% abs %>% as.character` = `r dat %>% .[-nrow(.),] %>% filter(Payback.A < 0) %>% .[nrow(.), 1] %>% str_split(' ') %>% .[[1]] %>% .[2] %>% as.numeric + abs(dat %>% .[-nrow(.),] %>% filter(Payback.A < 0) %>% .[nrow(.), 4] / dat %>% .[-nrow(.),] %>% filter(Payback.A > 0) %>% .[1, 2])` years.
+  
+  - **Payback B** has turned to be positive return at `r dat %>% .[-nrow(.),] %>% filter(Payback.B >= 0) %>% .[1, 1]`, therefore we using last negative figure `r dat %>% .[-nrow(.),] %>% filter(Payback.B < 0) %>% .[nrow(.), 1]` + `r dat %>% .[-nrow(.),] %>% filter(Payback.B < 0) %>% .[nrow(.), 5] %>% abs %>% as.character` ÷ `r dat %>% .[-nrow(.),] %>% filter(Payback.B > 0) %>% .[1, 3] %>% abs %>% as.character` = `r dat %>% .[-nrow(.),] %>% filter(Payback.B < 0) %>% .[nrow(.), 1] %>% str_split(' ') %>% .[[1]] %>% .[2] %>% as.numeric + abs(dat %>% .[-nrow(.),] %>% filter(Payback.B < 0) %>% .[nrow(.), 5] / dat %>% .[-nrow(.),] %>% filter(Payback.B > 0) %>% .[1, 3])` years.
 
 ### 2.1.2 Accounting Rate of Return
 
 ```{r data2.1.2, echo = FALSE, results = 'asis'}
-arr <- data.frame(Category = c('Average Net Value', 'Average ARR'), 'Option A' = c(unlist(dat[1, 'Option A']/6), sum(dat[-c(1:2), 'Option A'])/6), 'Option B' = c(unlist(dat[1, 'Option B']/6), sum(dat[-c(1:2), 'Option B'])/6))
+arr <- data.frame(Category = c('Average Net Value', 'Average ARR'), 'Option.A' = c(unlist(dat[1, 'Option.A']/6), sum(dat[-c(1:2), 'Option.A'])/6), 'Option.B' = c(unlist(dat[1, 'Option.B']/6), sum(dat[-c(1:2), 'Option.B'])/6))
 rownames(arr) = NULL
 
 arr <- rbind(arr, data.frame(c(Category = 'Ratio', c(arr[2, 2:3] - arr[1, 2:3]) / dat[1, 2:3]))) %>% tbl_df
@@ -157,10 +171,10 @@ dat1b <- data.frame(Category = c('Total Outflow', 'Total Saving'), rbind(dat[1, 
 dat1c <- data.frame(Category = 'Year', Option.A = 6, Option.B = 6)
 dat1b <- rbind(dat1b, dat1c)
 
-arr <- rbind(dat1b, arr)
+arr <- rbind(dat1b, arr) %>% tbl_df
 rm(dat1b, dat1c)
 
-datatable(arr)
+arr %>% formattable %>% as.htmlwidget
 ```
 
 *table 2.1.2: ARR cash flow of Cut Here Inc.*
@@ -177,23 +191,59 @@ $$\frac{Outflow - \sum_{n = 6}^{i = 1,2,3...}Saving}{Outflow}$$
 ### 2.1.3 Net present value
 
 ```{r data2.1.3, echo = FALSE, results = 'asis'}
-npv <- dat[1:3] %>% mutate(NPV.A.13 = round(`Option A` / 1.13^c(0, 0, seq(1, 6)), 2), 
-                           NPV.B.09 = round(`Option B` / 1.09^c(0, 0, seq(1, 6)), 2), 
-                           NPV.A.18 = round(`Option A` / 1.18^c(0, 0, seq(1, 6)), 2), 
-                           NPV.B.11 = round(`Option B` / 1.11^c(0, 0, seq(1, 6)), 2), 
-                           NPV.A.25 = round(`Option A` / 1.25^c(0, 0, seq(1, 6)), 2), 
-                           NPV.B.13 = round(`Option B` / 1.13^c(0, 0, seq(1, 6)), 2), 
-                           NPV.A.28 = round(`Option A` / 1.28^c(0, 0, seq(1, 6)), 2), 
-                           NPV.B.15 = round(`Option B` / 1.15^c(0, 0, seq(1, 6)), 2), 
-                           NPV.A.16 = round(`Option A` / 1.16^c(0, 0, seq(1, 6)), 2), 
-                           NPV.B.16 = round(`Option B` / 1.16^c(0, 0, seq(1, 6)), 2))
+npv <- suppressWarnings(
+  dat[1:3] %>% mutate(
+    NPV.A.13 = round(`Option.A` / 1.13^c(0, 0, seq(1, 6)), 2), 
+    NPV.B.09 = round(`Option.B` / 1.09^c(0, 0, seq(1, 6)), 2), 
+    NPV.A.18 = round(`Option.A` / 1.18^c(0, 0, seq(1, 6)), 2), 
+    NPV.B.11 = round(`Option.B` / 1.11^c(0, 0, seq(1, 6)), 2), 
+    NPV.A.25 = round(`Option.A` / 1.25^c(0, 0, seq(1, 6)), 2), 
+    NPV.B.13 = round(`Option.B` / 1.13^c(0, 0, seq(1, 6)), 2), 
+    NPV.A.28 = round(`Option.A` / 1.28^c(0, 0, seq(1, 6)), 2), 
+    NPV.B.15 = round(`Option.B` / 1.15^c(0, 0, seq(1, 6)), 2), 
+    NPV.A.16 = round(`Option.A` / 1.16^c(0, 0, seq(1, 6)), 2), 
+    NPV.B.16 = round(`Option.B` / 1.16^c(0, 0, seq(1, 6)), 2)))
 
 dat1b <- data.frame(Category = c('Total in 6 Years', 'Difference'), rbind(data.frame(t(data.frame(colSums(npv[-c(1:2), -1])))), t(data.frame(colSums(npv[-c(1:2), -1]))) - data.frame(npv[1, -1])))
 rownames(dat1b) <- NULL
 
-npv <- rbind(data.frame(npv), dat1b)
-
-datatable(npv)
+npv <- rbind(data.frame(npv), dat1b) %>% tbl_df
+npv %>% formattable(
+    list(
+        Option.A = color_tile('white', 'darkgoldenrod'), 
+        Option.B = color_tile('white', 'darkgoldenrod'), 
+        NPV.A.13 = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+        NPV.B.09 = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+        NPV.A.18 = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+        NPV.B.11 = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+        NPV.A.25 = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+        NPV.B.13 = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+        NPV.A.28 = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+        NPV.B.15 = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+        NPV.A.16 = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+        NPV.B.16 = formatter(
+            'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+            x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x)))
+    )
+) %>% as.htmlwidget
 ```
 
 *table 2.1.3: NPV cash flow of Cut Here Inc.*
@@ -208,8 +258,8 @@ datatable(npv)
 
   From *table 2.1.3*, we know that the annual return rate for 16% as below. You can also know 13% (`NPV.A.13` and `NPV.B.13`) from the table.
 
-  - *NPV* for Option A = `r as.character(tail(npv$NPV.A, 1))` - `r as.character(npv$NPV.A[1])` = `r as.character(tail(npv$NPV.A, 1) - npv$NPV.A[1])`, therefore it is a profitable investment.
-  - *NPV* for Option B = `r as.character(tail(npv$NPV.B, 1))` - `r as.character(npv$NPV.B[1])` = `r as.character(tail(npv$NPV.B, 1) - npv$NPV.B[1])`, therefore it is NOT a profitable investment.
+  - *NPV* for Option A = `r as.character(tail(npv$NPV.A.16, 1))` - `r as.character(npv$NPV.A.16[1])` = `r as.character(tail(npv$NPV.A.16, 1) - npv$NPV.A.16[1])`.
+  - *NPV* for Option B = `r as.character(tail(npv$NPV.B.16, 1))` - `r as.character(npv$NPV.B.16[1])` = `r as.character(tail(npv$NPV.B.16, 1) - npv$NPV.B.16[1])`.
 
 ### 2.1.4 Internal Rate of Return
 
@@ -235,7 +285,7 @@ Read more: [IRR Rule Definition | Investopedia](http://www.investopedia.com/term
 
 ## 2.2 Part 2
 
-  Based on what you calculated in Part 1, which option would you recommend to Cut Here management?
+>  Based on what you calculated in Part 1, which option would you recommend to Cut Here management?
 
   - *Payback* for project A is 3.29 Years and 5.57 years for project B. Means that the cost invested on project A will be even on 3.29 years and begin make money after that.
   - *Accounting Rate of Return* for project A is 23.33% and project B is 11.13%. Since the average return for project A across 6 years around 23.33% and it is better than project B.
@@ -312,6 +362,77 @@ options(op)
 # 3. Conclusion
 
   [2.3 Part 3] has concludes the assignment. However there has a lot of factors we need to take into consideration but not merely on accounting figures.
+
+  You might refer to below reference as well.
+
+```
+## Cumulative Cash Flow
+
+                  Option A  Option B  Option A  Option B
+Immediate outflow $100,000  $250,000  $100,000  $250,000
+Cash Savings
+Year 1            10,000    1,000     (90,000)  (249,000)
+Year 2	          50,000    2,000     (40,000)	(247,000)
+Year 3	          20,000    3,000     (20,000)	(244,000)
+Year 4	          70,000    1,000     50,000    (243,000)
+Year 5            80,000    20,000    130,000   (223,000)
+Year 6            10,000    390,000   140,000   167,000
+
+## Part 1
+
+Payback	Option A:
+Payback = 3+(20,000/70,000) = 3.29	Years
+
+Option B:
+Payback = 6 + (167,000/223,000) = 6.75	Years
+
+ARR	Option A:
+ARR = 140,000/100,000 = 140%
+
+Option B:
+ARR = 167,000/250,000= 0.67%
+
+NPV
+Assuming the discount rate = 0
+
+Present Value (in thousands unit)
+      Option A      Option B     Option A Option B
+T=0   -100/(1+0)^0  -250/(1+0)^0 (100)	  (250)
+T=1   10/(1+0)^1    1/(1+0)^1    10       1
+T=2   50/(1+0)^2    2/(1+0)^2    50       2
+T=3   20/(1+0)^3    3/(1+0)^3    20       3
+T=4   70/(1+0)^4    1/(1+0)^4    70       1
+T=5   80/(1+0)^5    20/(1+0)^5   80       20
+T=6   10/(1+0)^6    390/(1+0)^6  10       390
+NPV                              140      167
+
+IRR
+
+Option A:
+IRR = -100,000+(10,000/(1+r)^1)+(50,000/(1+r)^2)+(20,000/(1+r)^3)+(70,000/(1+r)^4)+(80,000/(1+r)^5)+(10,000/(1+r)^6)=0
+= 0.2781 = 27.81%
+
+Option B:
+IRR = -250,000+(1,000/(1+r)^1)+(2,000/(1+r)^2)+(3,000/(1+r)^3)+(1,000/(1+r)^4)+(20,000/(1+r)^5)+(390,000/(1+r)^6)=0
+= 0.0909 = 9.09%
+
+## Part 2
+
+According to the above, it would recommend Option A to Cut Here.
+
+## Part 3
+
+Strength Weakness
+
+  - Payback Simple and easily understand The Present Value of money does not include for the consideration
+  - ARR Simple and easily understand The Present Value of money does not include for the consideration
+  - The cash flow of each year does not include for the consideration
+  - NPV "The Present Value of money includes for the consideration"	The size of the project does not include for consideration.
+  - "The cash flow of each year includes for the consideration"
+  - IRR "The Present Value of money includes for the consideration"	Difficult for the determination and understand
+  - "The cash flow of each year includes for the consideration"	Only base on one assumption
+  - As there is no interest rate given to compute the NPV and IRR, so the value of those cannot be deteremine accurately.
+```
 
   As mentioned in section [Speech and Blooper], I need to self improve in financial statement analysis section but also products my research [Analyse the Finance and Stocks Price of Bookmakers](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers).
 

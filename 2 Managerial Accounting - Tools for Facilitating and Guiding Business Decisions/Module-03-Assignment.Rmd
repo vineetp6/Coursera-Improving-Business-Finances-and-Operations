@@ -18,7 +18,7 @@ link-citations: yes
 
 ```{r load-pkgs, include = FALSE}
 suppressMessages(library('plyr'))
-pkgs <- c('plyr', 'dplyr', 'magrittr', 'knitr', 'stringr', 'tidyr', 'googleVis', 'DT', 'rCharts', 'formattable', 'lubridate', 'rvest', 'FinCal')
+pkgs <- c('plyr', 'dplyr', 'magrittr', 'knitr', 'stringr', 'tidyr', 'googleVis', 'DT', 'rCharts', 'formattable', 'lubridate', 'rvest', 'FinCal', 'purrr')
 suppressMessages(l_ply(pkgs, library, character.only = TRUE))
 rm(pkgs)
 
@@ -60,9 +60,23 @@ Browse other projects. You can browse through all of the submitted assignments, 
   Flatland, Inc. produces small machine parts for industrial use in a single plant. The plant manager recently received the following performance report for his plant for the most recent month.
 
 ```{r data-1-1-3-1, echo = FALSE, results = 'asis'}
-dat1.1 <- data_frame(Category = c('Units', 'Sales', 'Less variables costs:', 'Direct materials', 'Direct labor', 'Manufacturing overhead', 'Total variable costs', 'Contribution margin', 'Fixed manufacturing overhead', 'Operating profit'), Actual = c(5500, 132000, '', 22275, 20805, 15860, -58940, 73060, -26500, 46560), Budgeted = c(6000, 120000, '', 23400, 21000, 16500, -60900, 59100, -25000, 34100))
+dat1.1 <- data_frame(
+  Category = factor(c('Units', 'Sales', 'Less variables costs:', 'Direct materials', 'Direct labor', 'Manufacturing overhead', 'Total variable costs', 'Contribution margin', 'Fixed manufacturing overhead', 'Operating profit')), 
+  
+  Actual = as.numeric(c(5500, 132000, '', 22275, 20805, 15860, -58940, 73060, -26500, 46560)), 
+  
+  Budgeted = as.numeric(c(6000, 120000, '', 23400, 21000, 16500, -60900, 59100, -25000, 34100)))
 
-dat1.1 %>% formattable %>% as.htmlwidget
+dat1.1 %>% formattable(
+  list(
+    Actual = formatter(
+      'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+      x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x))), 
+    Budgeted = formatter(
+      'span', style = x ~ style(color = ifelse(x > 0, 'green', 'red')), 
+      x ~ icontext(ifelse(x > 0, 'ok', 'remove'), ifelse(x, x, x)))
+    )
+  ) %>% as.htmlwidget
 ```
 
 *table 1.1.3.1: financial statememt of Flatland Inc.*
@@ -141,6 +155,9 @@ Both content and organization are important components of a response. Good writi
 # 2. Case Study
 
   - Section [2.1 Part 1: Cost Variances]
+    + Section [2.1.1 Answer 1]
+    + Section [2.1.2 Answer 2]
+    + Section [2.1.3 Answer 3]
   - Section [2.2 Part 2: Revenue Variances]
 
 ## 2.1 Part 1: Cost Variances
@@ -157,40 +174,67 @@ Both content and organization are important components of a response. Good writi
 
 **Answer**:
 
+### 2.1.1 Answer 1
+
 ```{r data-2-1-1, echo = FALSE, results = 'asis'}
 dat2.1 <- data_frame(
-  Category = c('Units', 'Sales', 'Less variables costs:', 'Direct materials', 'Direct labor', 'Manufacturing overhead', 'Total variable costs', 'Contribution margin', 'Fixed manufacturing overhead', 'Operating profit'), 
-  Actual = c(5500, 132000, '', 22275, 20805, 15860, -58940, 73060, -26500, 46560), 
-  
-  Standard = c('$2,850 / (1/2 hour per unit) = 5,700 units', '', '', '', '', '', '', '', '', ''), 
-  
-  Budgeted = c(6000, 120000, '', 23400, 21000, 16500, -60900, 59100, -25000, 34100))
+  Category = c('Units', 'Direct materials', 'Direct labor :', 'Hours', 'Wages'), 
+  Actual = c('5,500 units', '8,250 kg', '', '2,850 hrs', '$20,805'), 
+  Standard = c('5,500 units', '8,250 kg', '', '2,750 hrs', '$19,250'), 
+  Budgeted = c('6,000 units', '9,000 kg', '', '3,000 hrs', '$21,000'), 
+  Var = c('500 units', '-', '', '100 hrs', '$1,555'), 
+  Diff = c('Unfavorable', 'Favorable', '', 'Unfavorable', 'Unfavorable'))
 
-dat2.1 %>% formattable %>% as.htmlwidget
+dat2.1 %>% formattable(
+  list(
+    Diff = formatter(
+      'span', style = x ~ style(color = ifelse(x == 'Favorable', 'green', 'red')), 
+      x ~ icontext(ifelse(x == 'Favorable', 'ok', 'remove'), ifelse(x == 'Favorable', 'Favorable', 'Unfavorable')))
+    )
+  ) %>% as.htmlwidget
 ```
 
 *table 2.2.1: financial statement of Flatland Inc.*
+
+  By refer to [1.1.3.1 Part 1: Cost Variances], we calculate and get below answer:
+
+  - **Produced Units**: Budgeted 6,000 units produced but only 5,500 units produced in real operations.
+  - **Cost of Materials**: *5,500 units x 1.5 kg per unit = 8,250 kg* is similar with *6,000 units x 1.5 kg per unit = 9,000 kg* in cost per unit. Therefore consider favorable since the cost is similar with budgets.
+  - **Labor Cost**: 1/2 hour can produce 2 units, therefore 5,500 units should be used only 2,750 hours but not 2,850 hours.
+  - Since \$7 labor paid per hour, therefore additional 100 hours (2850 - 2750 = 100) used for produced 5,500 units and extra \$1,555 (20805 - 19250 = 1555) spent.
 
 ```{r data-2-1-2, echo = FALSE, results = 'asis'}
 dat2.2 <- data_frame(
   Category = c('Units', 'Sales', 'Less variables costs:', 'Direct materials', 'Direct labor', 'Manufacturing overhead', 'Total variable costs', 'Contribution margin', 'Fixed manufacturing overhead', 'Operating profit'), 
   
-  Actual = c('8,250 kg / 5,500 Units = 1.5 kg', '$132,000 / 5,500 units = $24 per unit', '', '$22,275 / 5,500 units = $4.05 per unit', '$20,805 / 5,500 units = $3.782727 per unit', '$15,860 / 5,500 units = $2.883636 per unit', '-$58,940 / 5,500 units = $10.71636 per unit == ($4.05 + $3.782727 + $2.883636 = $10.71636 per unit)', '$73,060 / 5,500 units = $13.28364 per unit == ($24 - )', -26500, 46560),
+  Actual = c('8,250 kg / 5,500 Units = 1.5 kg', '$132,000 / 5,500 units = $24 per unit', '', '$22,275 / 5,500 units = $4.05 per unit', '$20,805 / 5,500 units = $3.782727 per unit ($20,805 / 2,850 hrs = $7.3 per hr)', '$15,860 / 5,500 units = $2.883636 per unit', '$4.05 + $3.782727 + $2.883636 = $10.71636 per unit', '$24 - $10.71636 = $13.28364', '$26,500 / 5,500 units = $4.818182 per unit', '$13.28364 - $4.818182 = $8.465458'),
   
-  Standard = c('$2,850 / (1/2 hour per unit) = 5,700 Units', '$132,000 / 5,700 units = $23.15789 per unit', '', '$22,275 / 5,700 units = $3.907895 per unit', '$20,805 / 5,700 units = $3.65 per hour', '$15,860 / 5,700 units = $2.782456 per unit', '-$58,940 / 5,700 units = -$10.34035 per unit == (-$3.907895 + $3.65 + $2.782456 = $10.34035 per unit)', '$73,060 / 5,700 units = $12.81754 per unit == ($23.15789 - $10.34035 = $12.81754 per unit)', '$26,500 / 5,700 units = $4.649123 per unit', '$46,560 / 5,700 units = $8.168421 per unit == ($12.81754 - $4.649123 = $8.168417 per unit)'), 
-  
-  Budgeted = c('9,000 kg / 6,000 units = 1.5 kg', '$120,000 / 6,000 units = $20 per unit', '', '$23,400 / 6,000 units = $3.9 per unit', '$21,000 / 6,000 units = $3.5 per unit', '$16,500 / 6,000 units = $2.75 per unit', '-$60,900 / 6,000 units = $10.15 per unit == ($3.9 + $3.5 + $2.75 = $10.15 per unit)', '$59,100 / 6,000 units = $9.85 per unit === ($20 - $10.15 = $9.85 per unit)', '-$25,000 / 6,000 units = $4.166667 per unit', '$34,100 / 6,000 units = $5.683333 per unit == ($9.85 - $4.166667 = $5.683333 per unit)'))
+  Standard = c('8,250 kg / 5,500 Units = 1.5 kg', '$132,000 / 5,500 units = $24 per unit', '', '$22,275 / 5,500 units = $4.05 per unit', '$19,250 / 5,500 units = $3.5 per unit (5,500 units / 2 unit per hr * $7 per hr = $19,250)', '$15,860 / 5,500 units = $2.883636 per unit', '$4.05 + $3.5 + $2.883636 per unit = $10.43364 per unit', '$24 - $10.43364 = $13.56636 per unit', '$26,500 / 5,500 units = $4.818182 per unit', '$13.56636 - $4.818182 = $8.748178 per unit'), 
+
+  Budgeted = c('9,000 kg / 6,000 units = 1.5 kg', '$120,000 / 6,000 units = $20 per unit', '', '$23,400 / 6,000 units = $3.9 per unit', '$21,000 / 6,000 units = $3.5 per unit', '$16,500 / 6,000 units = $2.75 per unit', '$3.9 + $3.5 + $2.75 = $10.15 per unit', '$20 - $10.15 = $9.85 per unit', '-$25,000 / 6,000 units = $4.166667 per unit', '$9.85 - $4.166667 = $5.683333 per unit'))
 
 dat2.2 %>% formattable %>% as.htmlwidget
 ```
 
 *table 2.2.2: per unit basis statement of Flatland Inc.*
 
-  By refer to [1.1.3.1 Part 1: Cost Variances], we calculate below answer:
+  Based on the comparison of column `Actual` and `Standard` inside *table 2.2.2*, we know the operating profit reduced due to labor cost per unit increase but the rest keep unchanged. Provided the question mentioned only below elements:
+  
+  - 1/2 hour produced a unit
+  - labor paid is \$7 per hours
+  - 8,250 kg raw materials used to produced 5,500 units.
+  - A unit use 1.5 kg raw materials
 
-  - **Actual Unit Produced** : 8250 kg ÷ 1.5 kg = `r 8250 / 1.5` units
-  - **Direct Labour** : 
-  - 
+### 2.1.2 Answer 2
+
+  - The terms of **favorable** is the actual cost or expense is less than standard or budget. The revenue better than budget is consider as **favorable** as well since as long as the statement is more benefit and profitable than budget/standard.
+  - When the actual result is worst than budget or standard, then it will be calsiffied as **unfavorable**.
+
+### 2.1.3 Answer 3
+
+  - Based on *table 2.2.1* and *table 2.2.2*, the labor cost per hour has increase to \$7.3 per hour from \$7 per hour. Therefore 0.3 ÷ 7 = `r paste0(round(0.3/7 * 100, 2), '%')` additional cost.
+  - For the raw materials, the actual cost is same with standard.
+  - The labor cost increased might be due to unskill staffs which reduced the productivity. However fortunately the cost of materials do not increase means the staffs have not missed use or waste the materials for production.
 
 ## 2.2 Part 2: Revenue Variances
 
@@ -204,8 +248,76 @@ dat2.2 %>% formattable %>% as.htmlwidget
 
 **Answer**:
 
+### 2.2.1 Answer 1
 
+```{r 2-2-1, echo = FALSE, results = 'asis'}
+dat2.3 <- dat1.2[1:3, ]
+dat2.3[1:3, 3] <- as.numeric(c(dat1.2$Standard[4:5], ''))
+dat2.3$Category %<>% str_replace_all('Budgeted ', '')
+names(dat2.3)[2:3] <- paste0(names(dat2.3)[2], c('.Budget', '.Actual'))
 
+dat2.3 %<>% mutate(Var = Standard.Actual - Standard.Budget, Diff = factor(ifelse(Var >= 0, 'Favorable', 'Unfavorable')))
+
+dat2.3a <- data.frame(Category = 'Revenue', dat2.3[1, 2:4] * dat2.3[2, 2:4]) %>% mutate(Diff = factor(ifelse(Var >= 0, 'Favorable', 'Unfavorable')))
+
+dat2.3 %<>% rbind(dat2.3a)
+dat2.3 %<>% llply(str_replace_na, '') %>% data.frame %>% tbl_df
+rm(dat2.3a)
+
+dat2.3 %>% formattable(
+  list(
+    Diff = formatter(
+      'span', style = x ~ style(color = ifelse(x == 'Favorable', 'green', 'red')), 
+      x ~ icontext(ifelse(x == 'Favorable', 'ok', 'remove'), ifelse(x == 'Favorable', 'Favorable', 'Unfavorable')))
+    )
+  ) %>% as.htmlwidget
+```
+
+*table 2.2.1.1: financial statement of standard models.*
+
+```{r 2-2-2, echo = FALSE, results = 'asis'}
+dat2.4 <- data_frame(Category = dat1.2$Category[1:3], Super.Budget = dat1.2$Super[1:3], Super.Actual = as.numeric(c(dat1.2$Super[4:5], '')))
+dat2.4$Category %<>% str_replace_all('Budgeted ', '')
+
+dat2.4 %<>% mutate(Var = Super.Actual - Super.Budget, Diff = factor(ifelse(Var >= 0, 'Favorable', 'Unfavorable')))
+
+dat2.4a <- data.frame(Category = 'Revenue', dat2.4[1, 2:4] * dat2.4[2, 2:4]) %>% mutate(Diff = factor(ifelse(Var >= 0, 'Favorable', 'Unfavorable')))
+
+dat2.4 %<>% rbind(dat2.4a)
+dat2.4 %<>% llply(str_replace_na, '') %>% data.frame %>% tbl_df
+rm(dat2.4a)
+
+dat2.4 %>% formattable(
+  list(
+    Diff = formatter(
+      'span', style = x ~ style(color = ifelse(x == 'Favorable', 'green', 'red')), 
+      x ~ icontext(ifelse(x == 'Favorable', 'ok', 'remove'), ifelse(x == 'Favorable', 'Favorable', 'Unfavorable')))
+    )
+  ) %>% as.htmlwidget
+```
+
+*table 2.2.1.2: financial statement of super models.*
+
+  - Above two tables summarized from *table 1.1.3.2*
+  - Only `Budgeted CM per unit` but no `Actual CM per unit` figure provided.
+
+### 2.2.2 Answer 2
+
+```{r 2-2-3, echo = FALSE, results = 'asis'}
+dat2.5 <- data_frame(Category = c('Standard', 'Super', 'Total'), Budget.Unit = c('3,200', '800', '4,000'), Budget.Prc = c('80%', '20%', '100%'), Actual.Unit = c('3,500', '1,500', '5,000'), Actual.Prc = c('70%', '30%', '100%'))
+
+dat2.5 %>% formattable %>% as.htmlwidget
+```
+
+*table 2.2.2.1: summary of the production and sales strategy.*
+
+  According to the above, the sales mix of Standard and Super changes from *80%/20%* (Budget) to *70%/30%* (Actual).
+
+  - With changed the sales combination, there was benefit to the total revenue (Standard and Super) from `r paste0('$', as.numeric(as.character(dat2.3$Standard.Budget[4])) + as.numeric(as.character(dat2.4$Super.Budget[4])))` to `r paste0('$', as.numeric(as.character(dat2.3$Standard.Actual[4])) + as.numeric(as.character(dat2.4$Super.Actual[4])))`.
+
+  - Due to insufficient information provided, the CM could not be determined in order to measure the effectiveness of both sales and expenses between the actual and budgeted.
+
+  - The allocation of the direct and indirect costs, fixed cost, customer behavior and market demand are all the factor to influent for both sales and profit margin of the products.
 
 ```{r, echo = FALSE, results = 'asis'}
 ## Set options back to original options
@@ -214,7 +326,71 @@ options(op)
 
 # 3. Conclusion
 
+```
+## Part 1:
 
+                              Actual    Budgeted
+Units                         5,500     6,000     Unfavorable
+Sales                         $132,000  $120,000
+Less: Var. costs
+Direct materials              $22,275   $23,400
+Direct labor                  $20,805   $21,000
+Manufacturing overhead        $15,860   $16,500
+Total variable costs          $(58,940) $(60,900)
+Contribution margin           $73,060   $59,100
+Fixed manufacturing overhead  $(26,500) $(25,000)
+Operating profit              $46,560   $34,100
+Operating profit (%)          35.27%    28.42%
+
+
+1. Standard for producing 5,500 units
+                  Standard  Actual    Var
+Direct materials  8,250 kg  8,250 kg  -       Favorable
+Direct labor:
+Hours             2,750 hr  2,850 hr  100 hrs Unfavorable
+Wages             $19,250   $20,805   $1,555  Unfavorable
+
+Remark:
+  - Direct material: Standard is 1.5kg /unit
+  - Direct labour  : standard is 1/2 hr per unit at wages $7/hr
+
+
+2. If the actual revenue, cost or expenses is better than the standard or budget, those will be classified as favorable.
+
+  - If the actual revenue, cost or expenses is worst than the standard or budget, those will be classified as unfavorable.
+
+
+3. For direct material, the actual cost per unit aligned with the standard but the direct labour cost did not.
+
+  - The actual direct labour cost was $7.3 vs standard $7 per hour. It was over $0.3 (4.29%) to standard. The differences might due to the experience and skills of the labour. In addition, the effectiveness of the machinery might also as a factor to decrease the productiveness.
+
+
+
+## Part 2.
+
+                      Standard  Super
+                      Budgeted  Actual      Var	Budgeted  Actual    Var
+Sales (units)         3,200     3,500       300 Favorable 800       1,500       700   Favorable
+CM (unit)             $210      $550
+Selling price (unit)  $300      $325        $25 Favorable $850      $840        $(10) Unfavorable
+Revenue               $960,000  $1,137,500      Favorable $680,000  $1,260,000
+
+Remark:	No actual CM per unit was provided.
+
+Sales (Units)
+          Budget      Actual
+Standard  3,200 80%   3,500 70%
+Super     800   20%   1,500 30%
+Total     4,000 100%  5,000 100%
+
+Remark:	According to the above, the sales mix of Standard and Super changes from 80%/20% (Budget) to 70%/30% (Actual).
+
+  - With changed the sales mix, there was benefit to the total revenue (Standard and Super) from $1,640,000 to $2,397,500.
+
+  - However, as there was insufficient information provided, so the CM could not be determined in order to measure the effectiveness of both sales and expenses between the actual and budgeted.
+
+  - The allocation of the direct/in direct cost, fixed cost, customer behavior and market demand are all the factor to influent for both sales and profit margin of the products.
+```
 
   As mentioned in section [Speech and Blooper], I need to self improve in financial statement analysis section but also products my research [Analyse the Finance and Stocks Price of Bookmakers](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers).
 
