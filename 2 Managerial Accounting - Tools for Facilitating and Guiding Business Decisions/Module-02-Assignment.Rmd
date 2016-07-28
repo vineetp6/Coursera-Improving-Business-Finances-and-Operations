@@ -160,6 +160,8 @@ dat %>% formattable(
 arr <- data.frame(Category = c('Average Net Value', 'Average ARR'), 'Option.A' = c(unlist(dat[1, 'Option.A']/6), sum(dat[-c(1:2), 'Option.A'])/6), 'Option.B' = c(unlist(dat[1, 'Option.B']/6), sum(dat[-c(1:2), 'Option.B'])/6))
 rownames(arr) = NULL
 
+dat %<>% .[-nrow(.), ]
+
 arr <- rbind(arr, data.frame(c(Category = 'Ratio', c(arr[2, 2:3] - arr[1, 2:3]) / dat[1, 2:3]))) %>% tbl_df
 
 arr$Option.A[1] <- round(arr$Option.A[1], 2)
