@@ -1,0 +1,307 @@
+---
+title: "[Financial Evaluation and Strategy: Corporate Finance](https://www.coursera.org/learn/corporate-finance/home/welcome) : *Module 4*"
+subtitle: "[Improving Business Finances and Operations Specialization](https://www.coursera.org/specializations/business-operations) by University of Illinois at Urbana-Champaign"
+author: "[®γσ, Eng Lian Hu](http://englianhu.wordpress.com) <img src='figure/ShirotoNorimichi2.jpg' width='24'> 白戸則道®"
+date: "`r Sys.Date()`"
+output:
+  tufte::tufte_html:
+    toc: yes
+  tufte::tufte_handout:
+    citation_package: natbib
+    latex_engine: xelatex
+  tufte::tufte_book:
+    citation_package: natbib
+    latex_engine: xelatex
+bibliography: skeleton.bib
+link-citations: yes
+---
+
+```{r load-pkgs, include = FALSE}
+suppressMessages(library('plyr'))
+pkgs <- c('BBmisc', 'plyr', 'dplyr', 'magrittr', 'knitr', 'DT', 'formattable', 'lubridate', 'FinCal', 'networkD3')
+suppressMessages(l_ply(pkgs, library, character.only = TRUE))
+rm(pkgs)
+
+## Set the googleVis options first to change the behaviour of plot.gvis, so that only the chart 
+##  component of the HTML file is written into the output file.
+op <- options(gvis.plot.tag = 'chart')
+```
+
+# 1. Introduction
+
+  - Section [1.1 Overview]
+  - Section [1.2 Instructions]
+  - Section [1.3 Review criteria]
+  - Section [1.4 Reminders]
+
+## 1.1 Overview
+
+**Instructions**
+
+  The purpose of this assignment is to give you the opportunity to apply the concepts you have learned in this module and to discuss some of the key ideas of the module in your own words. Follow the instructions provided and respond to each question. This a required activity for this module. The activity is peer reviewed, so after you submit your responses, you will review submissions by fellow learners in the course.
+
+## 1.2 Instructions
+
+  There are multiple steps to this assignment.
+
+  First, you will submit your answers to each questions based on the information in the Assignment Details section. Enter your answers directly in the spaces provided in the **My submission tab**. You may save a draft of your work as you go, and you can come back later to continue working on your draft. When you are finished working, click the **Preview** button, verify your identity, and then Submit the assignment. Please answer each question fully and concisely.
+
+  Then, you will evaluate the submissions of **at least THREE** of your peers based on the instructions provided. You may begin giving feedback to other students as soon as you submit your assignment, click the **Review peers** tab to begin. Feel free to provide additional reviews beyond the three required!
+
+  **Assignment 4 is described in [Video Lesson 4-14](), you should watch this video before doing the assignment.**
+
+
+
+  The discussion of the assignment solution is provided in Video Lesson 4-15. Do the assignment on your own first, **before** viewing the assignment discussion video! Please view the assignment discussion video **before** completing the review of your peers.
+
+## 1.3 Review criteria
+
+For Assignment #4, you will be responsible for evaluating the submissions of THREE of your peers. Before evaluating, please see the video I prepared with my discussion of the answers to Assignment #4.
+
+Assignment #4 is worth 100 points total.  Points are only given for correct/reasonable answers in the manner specified below, incorrect/unreasonable answers get zero points. Points should be allocated as follows:
+
+Question 1-a
+
+20 points for a complete answer that is correct. To get 10 points the student should set up the cash flows correctly, and calculate the correct NPV of the synergies
+
+15 points for a good answer that has calculation mistakes. For example if the student sets up the right decision tree but makes a calculation mistake to get the NPV
+
+10 points for an incomplete answer
+
+Question 1-b
+
+10 points for a reasonable answer that is consistent with the analysis in part a)
+
+5 points for an incomplete answer
+
+Question 1-c
+
+10 points for a reasonable answer that is based in the mini-case data and the arguments in the lectures
+
+5 points for an incomplete answer
+
+Question 2
+
+10 points for a reasonable answer that is based on the arguments that we discussed in the lectures
+
+5 points for an incomplete answer
+
+Question 3
+
+10 points for a reasonable answer that is based on the arguments that we discussed in the lectures
+
+5 points for an incomplete answer
+
+Question 4
+
+20 points for a reasonable answer that correctly discusses both whether the Beta is 1.1, and suggests a reasonable way of estimating the Beta
+
+10 points for an incomplete answer, for example if the suggestion to calculate Beta does not make sense
+
+Question 5
+
+10 points for the correct calculation of the WACC
+
+5 points for an incomplete answer
+
+Question 6
+
+10 points for a reasonable answer that is consistent with the analysis in question 5
+
+5 points for an incomplete answer or an answer that is too long (longer than 1 paragraph)
+
+Question 7
+
+10 points for the correct calculation of the EVA
+
+5 points for an incomplete answer
+
+Question 8
+
+10 points for a reasonable answer that is consistent with the analysis in question 7
+
+5 points for an incomplete answer or an answer that is too long (longer than 1 paragraph)
+
+Recommendations for Fair Peer Review:
+
+For questions that require calculations only, the score should be based on whether or not the answer provided is correct.
+For subjective questions, the score should not be based on whether or not you agree with the answer, rather on whether the answer is complete and well-supported.
+Both content and organization are important components of a response. Good writing is confident and clearly focused with relevant details to enrich the content. Good writing also follows instructions, such as word limits, and offers requested information.
+A clear and concise answer is preferable to a long response that lacks coherence.Focus should be on content; try not to unduly penalize responses for spelling or grammar.
+
+## 1.4 Reminders
+
+
+
+# 2. Case Study
+
+  - Section [2.1 Question 1]
+  - Section [2.2 Question 2]
+  - Section [2.3 Question 3]
+  - Section [2.4 Question 4]
+  - Section [2.5 Question 5]
+  - Section [2.6 Question 6]
+  - Section [2.7 Question 7]
+  - Section [2.8 Question 8]
+  - Section [2.9 Question 9]
+
+## 2.1 Question 1
+
+**Question**:
+
+> aaaaaa
+
+**Answer**:
+
+```
+aaaaaa
+```
+
+## 2.2 Question 2
+
+**Question**:
+
+> aaaaaa
+
+**Answer**:
+
+```
+aaaaaa
+```
+
+## 2.3 Question 3
+
+**Question**:
+
+> aaaaaa
+
+**Answer**:
+
+```
+aaaaaa
+```
+
+## 2.4 Question 4
+
+**Question**:
+
+> aaaaaa
+
+**Answer**:
+
+```
+aaaaaa
+```
+
+## 2.5 Question 5
+
+**Question**:
+
+> aaaaaa
+
+**Answer**:
+
+```
+aaaaaa
+```
+
+## 2.6 Question 6
+
+**Question**:
+
+> aaaaaa
+
+**Answer**:
+
+```
+aaaaaa
+```
+
+## 2.7 Question 7
+
+**Question**:
+
+> aaaaaa
+
+**Answer**:
+
+```
+aaaaaa
+```
+
+## 2.8 Question 8
+
+**Question**:
+
+> aaaaaa
+
+**Answer**:
+
+```
+aaaaaa
+```
+
+## 2.9 Question 9
+
+**Question**:
+
+> aaaaaa
+
+**Answer**:
+
+```
+aaaaaa
+```
+
+# 3. Conclusion
+
+aaaaaa
+
+# 4. Appendices
+
+  - Section [4.1 Documenting File Creation]
+  - Section [4.2 Versions' Log]
+  - Section [4.3 Speech and Blooper]
+  - Section [4.4 References]
+
+## 4.1 Documenting File Creation
+
+  It's useful to record some information about how your file was created.
+  
+  - File creation date: 2016-07-31
+  - File latest updated date: `r Sys.Date()`
+  - `r R.version.string`
+  - R version (short form): `r getRversion()`
+  - [**rmarkdown** package](https://github.com/rstudio/rmarkdown) version: `r packageVersion('rmarkdown')`
+  - [**tufte** package](https://github.com/rstudio/tufte) version: `r packageVersion('tufte')`
+  - File version: 1.0.0
+  - Author Profile: [®γσ, Eng Lian Hu](https://beta.rstudioconnect.com/englianhu/ryo-eng/)
+  - GitHub: [Source Code](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/tree/master/4%20Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance)
+  - Additional session information:
+
+```{r info, echo = FALSE, results = 'asis'}
+lubridate::now()
+devtools::session_info()$platform
+Sys.info()
+```
+
+## 4.2 Versions' Log
+
+  - *July 31, 2016*: [version: 1.0.0](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/4%20Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/Module-04-Assignment.Rmd)
+
+## 4.3 Speech and Blooper
+
+  I do appreciate that [University of Illinois at Urbana–Champaign](http://illinois.edu/) provides the [Improving Business Finances and Operations](https://www.coursera.org/specializations/business-operations) specialization via [Coursera](http://www.coursera.org). I used to study [Certified Accounting Technician (CAT)](http://www.accaglobal.com/ie/en/student/exam-support-resources/foundation-level-study-resources.html) course at [PAAC](http://www.paac.edu.my/index.php?p=location) more more decade. Now I need to review the finance and accounting course prior to conduct my research [Analyse the Finance and Stocks Price of Bookmakers](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers).
+  
+  There are few books below that I need to read for further understanding.
+  
+  - [Managerial Accounting](https://github.com/englianhu/Coursera-Improving-Business-Finances-and-Operations/blob/master/2%20Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/data/Managerial%20Accounting.pdf)
+  - [**Financial Statement** A Step-by-Step Guide to Understanding and Creating Financial Reports *by Thomas R. Ittelson 2009*](https://github.com/scibrokes/analyse-the-finance-and-stocks-price-of-bookmakers/blob/master/data/finance.pdf)
+  - [**Corporate Finance (3rd Edition)** *by Ivo Welch 2014*](http://book.ivo-welch.info/ed3/)
+
+## 4.4 References
+
+  1. [**Corporate Finance (3rd Edition)** *by Ivo Welch 2014*](http://book.ivo-welch.info/ed3/)
+  2. [**Financial Evaluation and Strategy:** *Corporate Finance : Module 2*](http://englianhu.github.io/2016/07/Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/Module-02-Assignment.html), [**Alternative link**](http://rpubs.com/englianhu/198073)
+  3. [**Managerial Accounting: Tools for Facilitating and Guiding Business Decisions** : *Module 2 Mini-Project*](http://englianhu.github.io/2016/07/Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/Module-02-Assignment.html), [**Alternative link**](http://rpubs.com/englianhu/194583)
+
