@@ -20,7 +20,7 @@
     - Module 1: *The Objective of the Corporation and Analysis of Financial Ratios* [Assignment](http://rpubs.com/englianhu/financial-evaluation-and-strategy-corporate-finance-assignment-01), ([Alternative link](http://englianhu.github.io/2016/07/Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/Module-01-Assignment.html))
     - Module 2: *Financial Planning* [Assignment](http://rpubs.com/englianhu/198073), ([Alternative link](http://englianhu.github.io/2016/07/Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/Module-02-Assignment.html))
     - Module 3: *Making Investment Decisions* [Assignment](http://rpubs.com/englianhu/199520), ([Alternative link](http://englianhu.github.io/2016/07/Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/Module-03-Assignment.html))
-    - Module 4: *Mergers and Acquisitions, Risk, and Performance Evaluation*
+    - Module 4: *Mergers and Acquisitions, Risk, and Performance Evaluation* [Assignment](http://rpubs.com/englianhu/199924), ([Alternative link](http://englianhu.github.io/2016/08/Financial%20Evaluation%20and%20Strategy%20-%20Corporate%20Finance/Module-04-Assignment.html))
     
   5. Operations Management
     - Module 1: *Operations Strategy* [Assignment 1](http://rpubs.com/englianhu/operational-management-module1-assignment1), ([Alternative link](http://englianhu.github.io/2016/06/operations%20management/Module-01-Assignment-01.html))
