@@ -12,7 +12,7 @@
     - Module 1: *Course Overview and Relevant Information for Decision Making* [Assignment 1](http://rpubs.com/englianhu/tools-for-facilitating-and-guiding-business-decisions-assignment-1), ([Alternative link](http://englianhu.github.io/2016/07/Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/Module-01-Assignment.html))
     - Module 2: *Budgeting for Planning and Control* [Assignment 2](http://rpubs.com/englianhu/194583), ([Alternative link](http://englianhu.github.io/2016/07/Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/Module-02-Assignment.html))
     - Module 3: *Standard Costing and Variance Analysis* [Assignment 3](http://rpubs.com/englianhu/198580), ([Alternative link](http://englianhu.github.io/2016/07/Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/Module-03-Assignment.html))
-    - Module 4: *Performance Measurement and Evaluation* [Assignment 4](http://rpubs.com/englianhu/200891), ([Alternative link]())
+    - Module 4: *Performance Measurement and Evaluation* [Assignment 4](http://rpubs.com/englianhu/200891), ([Alternative link](http://englianhu.github.io/2016/08/Managerial%20Accounting%20-%20Tools%20for%20Facilitating%20and%20Guiding%20Business%20Decisions/Module-04-Assignment.html))
     
   3. Financial Evaluation and Strategy: Investments
 
