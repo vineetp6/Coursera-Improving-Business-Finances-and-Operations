@@ -1,7 +1,7 @@
 ---
 title: "[Operations Management](https://www.coursera.org/learn/operations-management/home/welcome) : Module 1 Assignment 2"
 subtitle: "[Improving Business Finances and Operations Specialization](https://www.coursera.org/specializations/business-operations) by University of Illinois at Urbana-Champaign"
-author: "[®γσ, Eng Lian Hu](http://englianhu.wordpress.com) <img src='figure/ShirotoNorimichi.jpg' width='24'> 白戸則道®"
+author: "[®γσ, Eng Lian Hu](http://englianhu.wordpress.com) <img src='figure/ShirotoNorimichi2.jpg' width='24'> 白戸則道®"
 date: "`r Sys.Date()`"
 output:
   tufte::tufte_html:
@@ -37,7 +37,7 @@ suppressMessages(library('knitr'))
 
   Following are the relevant figures extracted from the balance sheet and income statement of two companies, a consumer electronics manufacturer and a large retailer.
 
-```{r table-01, echo = FALSE}
+```{r table-01, echo = FALSE, warning = FALSE, message = FALSE, results = 'asis'}
 tbl1 <- data.frame(
    Category = c('Sales', 'Earnings', 'Assets', 'Equity'), 
    `Consumer Electronics` = c(108249, 25922, 116371, 76615), 
@@ -48,38 +48,49 @@ tbl2 <- data.frame(
   `Consumer Electronics` = paste0('$', format(c(108249, 25922, 116371, 76615), big.mark = ',')), 
   `Large Retailer` = paste0('$', format(c(446950, 15699, 193406, 75761), big.mark = ','))) %>% tbl_df
 
-#'@ tbl1 %<>% formattable(
-#'@     list(
-        #'@ Category = formatter('span', 
-        #'@     style = x ~ style(
-        #'@         color = if(x == 'Sales') {
-        #'@                     Sales = 'green'
-        #'@                 } else if(x == Earnings) {
-        #'@                     Earnings = 'orange' 
-        #'@                 } else if(x == Assets) {
-        #'@                     Assets = 'blue' 
-        #'@                 } else {
-        #'@                     Equity = 'red' }), 
-        #'@             x ~ icontext(
-        #'@                 if(x == 'Sales') {
-        #'@                     Sales = 'pie-chart' 
-        #'@                 } else if(x == 'Earnings') {
-        #'@                 Earnings = 'usd' 
-        #'@                 } else if(x == 'Assets') {
-        #'@                     Assets = 'home' 
-        #'@                 } else {
-        #'@                     Equity = 'stats' }), 
-        #'@             if(x == 'Sales') {
-        #'@                 Sales = 'Sales' 
-        #'@                 } else if(x == 'Earnings') {
-        #'@                     Earnings = 'Earnings' 
-        #'@                 } else if(x == 'Assets') {
-        #'@                     Assets = 'Assets' 
-        #'@                 } else {
-        #'@                     Equity = 'Equity' }), 
-#'@         `Consumer.Electronics` = color_tile('white', 'gold'), 
-#'@         `Large.Retailer` = color_tile('white', 'orange')))
-#'@ as.htmlwidget(tbl1)
+suppressMessages(library('dplyr'))
+suppressMessages(library('magrittr'))
+suppressMessages(library('formattable'))
+
+tbl <- data.frame(Category = c('Sales', 'Earnings', 'Assets', 'Equity'), `Consumer Electronics` = c(108249, 25922, 116371, 76615), `Large Retailer` = c(446950, 15699, 193406, 75761)) %>% tbl_df
+
+# https://github.com/renkun-ken/formattable/issues/69
+# would recommend the scales package to help with style
+library('scales')
+
+tbl %>%
+  formattable(
+    list(
+      Category = formatter(
+        'span', 
+         style = x ~ style(
+           color=col_factor(
+             palette=c('green','orange','blue'),
+             domain=c('Sales','Earnings','Assets'),
+             na.color="red"
+           )(x)
+         ),
+         x ~ lapply(
+           x,
+           function(cell){
+             htmltools::tagList(
+              cell,
+              icontext(
+               c(
+                 'Sales'='pie-chart',
+                 'Earnings'='usd',
+                 'Assets'='home',
+                 'Equity'='stats'
+               )[as.character(cell)]
+              )
+            )
+           }
+         )
+      ),
+      `Consumer.Electronics` = color_tile('white', 'darkgoldenrod'), 
+      `Large.Retailer` = color_tile('white', 'blue4')
+    )
+  ) %>% as.htmlwidget
 
 tbl2 %>% kable(Caption = 'Table 1.1 : Comparison of Financial statement from Two Companies')
 ```
@@ -219,7 +230,7 @@ sm %>% kable(Caption = 'Table 2.4 : Operations Performance')
   - File latest updated date: `r Sys.Date()`
   - `r R.version.string`
   - R version (short form): `r getRversion()`
-  - [**rmarkdown** package]() version: `r packageVersion('rmarkdown')`
+  - [**rmarkdown** package](https://github.com/rstudio/rmarkdown) version: `r packageVersion('rmarkdown')`
   - [**tufte** package](https://github.com/rstudio/tufte) version: `r packageVersion('tufte')`
   - File version: 1.0.0
   - Author Profile: [®γσ, Eng Lian Hu](https://beta.rstudioconnect.com/englianhu/ryo-eng/)
@@ -243,4 +254,5 @@ Sys.info()
 ## 4.4 References
 
   - [How does Warren Buffett value a business?](https://www.quora.com/How-does-Warren-Buffett-value-a-business)
+  - [Color Hex Color Codes](http://www.color-hex.com)
 
